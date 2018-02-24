@@ -38,6 +38,10 @@ public class Main {
         
         home1.itemIn();
         home1.printOut();
+        
+        HomeGui home = new HomeGui();
+        home.setVisible(true);
+        home.setLocationRelativeTo(null); 
     }
     
 }

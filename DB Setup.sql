@@ -28,5 +28,7 @@ CREATE TABLE IF NONE EXISTS ProdInstance (
     ProdID int FOREIGN KEY REFERENCES Product(ProductID),
     UserID int FOREIGN KEY REFERENCES [User](UserID),
     ExpiryDate date,
-    Amount int
+    Amount int,
+    DateAdded date,
+    PRIMARY KEY (CupID, ProdID, UserID)
 );

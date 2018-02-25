@@ -1,0 +1,125 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package kitchen;
+
+/**
+ *
+ * @author up811334
+ */
+ 
+public class Kitchen {
+    
+  public static void main( String args[] ) {
+      
+    Connection conn = null;
+    Statement mystm = null;
+      
+    try {
+        Class.forName("org.sqlite.JDBC");
+        conn = DriverManager.getConnection("jdbc:sqlite:kitchen.db");
+        System.out.println("Opened database successfully");
+      
+        mystm = conn.createStatement();
+        String sql = "CREATE TABLE INVENTORY" +
+                        "(ID             INT     NOT NULL," +
+                        " Item           TEXT    NOT NULL, " + 
+                        " Quantity       INT     NOT NULL, " + 
+                        " ExpiryDate     INT     NOT NULL)";
+        mystm.executeUpdate(sql);
+        mystm.close();
+        conn.close();      
+    } catch (Exception e) {
+        System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        System.exit(0);
+    }
+    
+    System.out.println("Successfull");
+  }
+  
+}
+
+import java.sql.*;
+
+public class Kitchen {
+    
+  public static void main( String args[] ) {
+      
+    Connection conn = null;
+    Statement mystm = null;
+      
+    try {
+        Class.forName("org.sqlite.JDBC");
+        conn = DriverManager.getConnection("jdbc:sqlite:kitchen.db");
+        conn.setAutoCommit(false);
+        System.out.println("Opened database successfully");
+      
+        mystm = conn.createStatement();
+        String sql = "INSERT INTO KITCHEN (ID, ITEM, QUANTITY, EXPIRYDATE) " +
+                "VALUES(1,'Chicken', 2, 2018);";
+        mystm.executeUpdate(sql);
+        sql = "INSERT INTO KITCHEN (ID, ITEM, QUANTITY, EXPIRYDATE) " +
+                "VALUES(2, 'Pork', 3, 2019);";
+        mystm.executeUpdate(sql);
+        sql = "INSERT INTO KITCHEN (ID, ITEM, QUANTITY, EXPIRYDATE) " +
+                "VALUES(3, 'Beef', 5, 2018);";
+        mystm.executeUpdate(sql);
+        mystm.close();
+        conn.commit();
+        conn.close();      
+    } catch (Exception e) {
+        System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        System.exit(0);
+    }
+    
+    System.out.println("Successfull");
+  }
+
+import java.sql.*;
+
+public class Kitchen {
+    
+  public static void main( String args[] ) {
+      
+    Connection conn = null;
+    Statement mystm = null;
+      
+    try {
+        Class.forName("org.sqlite.JDBC");
+        conn = DriverManager.getConnection("jdbc:sqlite:kitchen.db");
+        conn.setAutoCommit(false);
+        System.out.println("Database Successfull");
+      
+        mystm = conn.createStatement();
+        ResultSet rs = mystm.executeQuery("SELECT * FROM KITCHEN;");  //Check where id,item,quantity,expirydate
+        
+        while(rs.next() ) {
+            int id = rs.getInt("id");
+            String item = rs.getString("item");
+            int quantity = rs.getInt("quantity");
+            int expirydate = rs.getInt("expirydate");
+            
+            System.out.println( "ID = " + id);
+            System.out.println( "ITEM = " + item);
+            System.out.println( "QUANTITY = " + quantity);
+            System.out.println( "EXPIRYDATE = " + expirydate);
+            System.out.println( " ");
+        }
+        rs.close();
+        mystm.close();
+        conn.close();      
+    } catch (Exception e) {
+        System.err.println(e.getClass().getName() + ": " + e.getMessage());
+        System.exit(0);
+    }
+    
+    System.out.println("Successfull");
+  }
+  
+}
+            
+
+
+}

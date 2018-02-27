@@ -40,6 +40,7 @@ public class Main {
         home1.printOut();
         
         HomeGui home = new HomeGui();
+        home.setTitle("keepFridge");
         home.setVisible(true);
         home.setLocationRelativeTo(null); 
     }

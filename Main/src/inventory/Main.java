@@ -19,25 +19,25 @@ public class Main {
     //static Scanner console = new Scanner(System.in);  //object of Scanner class
     
     public static void main(String[] args) {
-        Inventory item1 = new Inventory("apple", 2, 2);
-        Inventory item2 = new Inventory("banana",303, 3);
+        Item item1 = new Item("apple", 2,3, 2);
+        Item item2 = new Item("banana",303,4, 3);
         
         
-        Inventory item3 = new Inventory();
+        Item item3 = new Item();
         item3.setItemName("chicken");
         item3.setQuantity(23);
         item3.setExpiry(20);
         
        
-        ArrayList<Inventory> inventory1 = new ArrayList<>();
+        ArrayList<Item> inventory1 = new ArrayList<>();
         inventory1.add(item1);
         inventory1.add(item2);
         inventory1.add(item3);
         
-        Home home1 = new Home(inventory1);
+        Inventory ThisInventory = new Inventory(inventory1);
         
-        home1.itemIn();
-        home1.printOut();
+        ThisInventory.getInveItem();
+        ThisInventory.getInventoryItemInfo();
         
         HomeGui home = new HomeGui();
         home.setTitle("keepFridge");

@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 public class AddClass extends javax.swing.JFrame {
     private final HomeGui home;
     DefaultTableModel model;
+    private Inventory inventory;
+    
     /**
      * Creates new form NewJFrame
      */
@@ -21,16 +23,11 @@ public class AddClass extends javax.swing.JFrame {
         initComponents();
         this.home = home;
         addRowToJTable();
+        this.inventory = inventory;
     }
 
-    public class User{
-       
-        
-        public User(){}
-    
-    }
 // create a list of users
-    public ArrayList ListUsers()
+    public ArrayList ListItems()
     {
         ArrayList<Item> list = new ArrayList<Item>();
         Item u1 = new Item("FNA",0,9,10);
@@ -48,7 +45,7 @@ public class AddClass extends javax.swing.JFrame {
     public void addRowToJTable()
     {
         model = (DefaultTableModel) itemTable.getModel();
-        ArrayList<Item> list = ListUsers();
+        ArrayList<Item> list = ListItems();
         Object rowData[] = new Object[4];
         for(int i = 0; i < list.size(); i++)
         {

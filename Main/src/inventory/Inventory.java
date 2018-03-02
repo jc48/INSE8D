@@ -20,14 +20,14 @@ public class Inventory extends Item{
        // this.inventory1;
     }
     
-    // create a list of users
-    public ArrayList createInven()
-    {
-        ArrayList<Item> list = new ArrayList<>(); 
-        inventory1 = list;
-        return inventory1;
-    }
-    
+//  
+//    public ArrayList createInven()
+//    {
+//        ArrayList<Item> list = new ArrayList<>(); 
+//        inventory1 = list;
+//        return inventory1;
+//    }
+//    
     
     public ArrayList<Item> getInveItem(){
         return inventory1;

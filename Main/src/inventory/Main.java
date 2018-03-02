@@ -34,13 +34,13 @@ public class Main {
         inventory1.add(item2);
         inventory1.add(item3);
         **/
-        Inventory ThisInventory = new Inventory();
-        ThisInventory.createInven();
-        ThisInventory.addItem(item3);
+        Inventory hisInventory = new Inventory();
+       
+        hisInventory.addItem(item3);
        // Inventory ThisInventory = new Inventory(inventory1);
         
-        ThisInventory.getInveItem();
-        ThisInventory.getInventoryItemInfo();
+        hisInventory.getInveItem();
+        hisInventory.getInventoryItemInfo();
         
         HomeGui home = new HomeGui();
         home.setTitle("keepFridge");

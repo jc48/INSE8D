@@ -28,7 +28,7 @@ public class Item {
     public void setItemName(String setItemName){
         item = setItemName;
     }
-    public String getItem(){
+    public String getItemName(){
         return item;
     }
     

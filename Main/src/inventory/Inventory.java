@@ -13,11 +13,22 @@ import java.util.ArrayList;
  */
 public class Inventory extends Item{
    
-    private ArrayList <Item> inventory1 = new ArrayList<Item>();
-    
-    public Inventory( ArrayList<Item> inventoryItems){
-        inventory1=inventoryItems;
+    public ArrayList <Item> inventory1 = new ArrayList<>();
+    //public int id;
+    public Inventory(){
+       //id = id1;
+       // this.inventory1;
     }
+    
+//  
+//    public ArrayList createInven()
+//    {
+//        ArrayList<Item> list = new ArrayList<>(); 
+//        inventory1 = list;
+//        return inventory1;
+//    }
+//    
+    
     public ArrayList<Item> getInveItem(){
         return inventory1;
     }
@@ -34,10 +45,15 @@ public class Inventory extends Item{
         inventory1.remove(i);
     
     }
-    
+    /**
+    public void getItemInfo(ArrayList inv){
+        for(int i = 1; i < inv.size(); ++i){
+            System.out.print("Item: " + i.getItemName() + "\n" + "Quantity: " + i.getQuantity() + "\n" + "Date Added: " + i.getAddedDate() + "\n" + "Expiry Date: " + i.getExpiryDate() + "\n");
+        }
+        **/
     public void getInventoryItemInfo(){
         for(Item x : inventory1){
-            System.out.print("Item: " + x.getItem() + "\n" + "Quantity: " + x.getQuantity() + "\n" + "Date Added: " + x.getAddedDate() + "\n" + "Expiry Date: " + x.getExpiryDate() + "\n");
+            System.out.print("Item: " + x.getItemName() + "\n" + "Quantity: " + x.getQuantity() + "\n" + "Date Added: " + x.getAddedDate() + "\n" + "Expiry Date: " + x.getExpiryDate() + "\n");
         }
         
     

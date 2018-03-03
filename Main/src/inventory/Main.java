@@ -28,16 +28,19 @@ public class Main {
         item3.setQuantity(23);
         item3.setExpiry(20);
         
-       
+       /**
         ArrayList<Item> inventory1 = new ArrayList<>();
         inventory1.add(item1);
         inventory1.add(item2);
         inventory1.add(item3);
+        **/
+        Inventory hisInventory = new Inventory();
+       
+        hisInventory.addItem(item3);
+       // Inventory ThisInventory = new Inventory(inventory1);
         
-        Inventory ThisInventory = new Inventory(inventory1);
-        
-        ThisInventory.getInveItem();
-        ThisInventory.getInventoryItemInfo();
+        hisInventory.getInveItem();
+        hisInventory.getInventoryItemInfo();
         
         HomeGui home = new HomeGui();
         home.setTitle("keepFridge");

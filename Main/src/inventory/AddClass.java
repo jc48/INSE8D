@@ -5,21 +5,59 @@
  */
 package inventory;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author up800143
  */
 public class AddClass extends javax.swing.JFrame {
     private final HomeGui home;
-
+    DefaultTableModel model;
+    private Inventory inventory;
+    
     /**
      * Creates new form NewJFrame
      */
     public AddClass(HomeGui home) {
         initComponents();
         this.home = home;
+        addRowToJTable();
+        this.inventory = inventory;
     }
 
+// create a list of users
+    public ArrayList ListItems()
+    {
+        ArrayList<Item> list = new ArrayList<Item>();
+        Item u1 = new Item("FNA",0,9,10);
+        Item u2 = new Item("F",3,4,20);
+        Item u3 = new Item("LNC",6,8,30);
+
+        list.add(u1);
+        list.add(u2);
+        list.add(u3);
+
+        return list;
+    }
+    
+// added rows from arraylist to jtable
+    public void addRowToJTable()
+    {
+        model = (DefaultTableModel) itemTable.getModel();
+        ArrayList<Item> list = ListItems();
+        Object rowData[] = new Object[4];
+        for(int i = 0; i < list.size(); i++)
+        {
+            rowData[1] = list.get(i).item;
+            rowData[2] = list.get(i).quantity;
+            rowData[3] = list.get(i).addedDate;
+            rowData[0] = list.get(i).expiryDate;
+            model.addRow(rowData);
+        }
+                
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,6 +67,7 @@ public class AddClass extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField2 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         addItemBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -36,6 +75,8 @@ public class AddClass extends javax.swing.JFrame {
         itemTable = new javax.swing.JTable();
         searchBox = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
+
+        jTextField2.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,7 +110,7 @@ public class AddClass extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 124, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,7 +135,7 @@ public class AddClass extends javax.swing.JFrame {
                         .addComponent(backBtn)
                         .addGap(3, 3, 3)
                         .addComponent(addItemBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 435, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -106,10 +147,10 @@ public class AddClass extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(addItemBtn)
-                        .addComponent(backBtn)))
+                        .addComponent(backBtn))
+                    .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(7, 7, 7))
@@ -181,6 +222,7 @@ public class AddClass extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField searchBox;
     // End of variables declaration//GEN-END:variables
 

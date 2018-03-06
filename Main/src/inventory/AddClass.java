@@ -24,7 +24,10 @@ public class AddClass extends javax.swing.JFrame {
         this.home = home;
         addRowToJTable();
         this.inventory = inventory;
+      
     }
+    
+    
 
 // create a list of users
     public ArrayList ListItems()
@@ -169,9 +172,12 @@ public class AddClass extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+      ItemAdd itemBox = new ItemAdd();
     private void addItemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addItemBtnActionPerformed
         // TODO add your handling code here:
+        //this.setVisible(false);
+        itemBox.setLocationRelativeTo(null); 
+        itemBox.setVisible(true);
        
     }//GEN-LAST:event_addItemBtnActionPerformed
 

@@ -27,19 +27,19 @@ public class AddClass extends javax.swing.JFrame {
       
     }
     
+    public void message(ItemAdd add){
+        System.out.println("I worked"); 
+    }
     
 
+
 // create a list of users
-    public ArrayList ListItems()
+    public ArrayList listItems()
     {
         ArrayList<Item> list = new ArrayList<Item>();
-        Item u1 = new Item("FNA",0,9,10);
-        Item u2 = new Item("F",3,4,20);
-        Item u3 = new Item("LNC",6,8,30);
-
+        Item u1 = new Item(itemBox.getItemName(),itemBox.getItemQuanity(),5,5);
+  
         list.add(u1);
-        list.add(u2);
-        list.add(u3);
 
         return list;
     }
@@ -48,14 +48,14 @@ public class AddClass extends javax.swing.JFrame {
     public void addRowToJTable()
     {
         model = (DefaultTableModel) itemTable.getModel();
-        ArrayList<Item> list = ListItems();
+        ArrayList<Item> list = listItems();
         Object rowData[] = new Object[4];
         for(int i = 0; i < list.size(); i++)
         {
-            rowData[1] = list.get(i).item;
-            rowData[2] = list.get(i).quantity;
-            rowData[3] = list.get(i).addedDate;
-            rowData[0] = list.get(i).expiryDate;
+            rowData[0] = list.get(i).item;
+            rowData[1] = list.get(i).quantity;
+            rowData[2] = list.get(i).addedDate;
+            rowData[3] = list.get(i).expiryDate;
             model.addRow(rowData);
         }
                 
@@ -76,6 +76,7 @@ public class AddClass extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         itemTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         searchBox = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
 
@@ -96,10 +97,7 @@ public class AddClass extends javax.swing.JFrame {
 
         itemTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", "", "", ""},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Item", "Quantity", "Date Added", "Expiry Date"
@@ -107,18 +105,37 @@ public class AddClass extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(itemTable);
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 124, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(0, 33, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(161, 161, 161)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        searchBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchBoxKeyTyped(evt);
+            }
+        });
 
         backBtn.setText("<-");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -187,6 +204,18 @@ public class AddClass extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void searchBoxKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBoxKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchBoxKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                    // TODO add your handling code here:
+       listItems();
+       addRowToJTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+   
+    
     /**
      * @param args the command line arguments
      */
@@ -225,6 +254,7 @@ public class AddClass extends javax.swing.JFrame {
     private javax.swing.JButton addItemBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JTable itemTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

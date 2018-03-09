@@ -5,7 +5,7 @@
  */
 package inventory;
 
-import java.awt.event.KeyEvent;
+import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -53,9 +53,7 @@ public class AddClass extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         itemQuantityTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        itemDate = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        itemExpiry = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         searchBox = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
 
@@ -87,39 +85,9 @@ public class AddClass extends javax.swing.JFrame {
 
         jLabel1.setText("Item");
 
-        itemNameTxt.setText("Item");
-        itemNameTxt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                itemNameTxtMouseClicked(evt);
-            }
-        });
-
         jLabel2.setText("Quantity");
 
-        itemQuantityTxt.setText("Quantity");
-        itemQuantityTxt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                itemQuantityTxtMouseClicked(evt);
-            }
-        });
-
-        jLabel3.setText("Date");
-
-        itemDate.setText("Date");
-        itemDate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                itemDateMouseClicked(evt);
-            }
-        });
-
-        jLabel4.setText("Expiry ");
-
-        itemExpiry.setText("Expiry Date");
-        itemExpiry.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                itemExpiryMouseClicked(evt);
-            }
-        });
+        jLabel3.setText("Expiry Date");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -127,19 +95,21 @@ public class AddClass extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))
+                                .addGap(14, 14, 14))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(itemQuantityTxt)
-                            .addComponent(itemDate)
-                            .addComponent(itemNameTxt)
-                            .addComponent(itemExpiry, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)))
-                    .addComponent(jLabel4)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(itemQuantityTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(itemNameTxt))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
@@ -148,23 +118,18 @@ public class AddClass extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(78, 78, 78)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(itemNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(itemQuantityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel3))
-                    .addComponent(itemDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(itemExpiry, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(itemNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(itemQuantityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(84, 84, 84)
                 .addComponent(jButton1)
                 .addContainerGap(62, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -173,8 +138,11 @@ public class AddClass extends javax.swing.JFrame {
         searchBox.setText("Search...");
         searchBox.setToolTipText("");
         searchBox.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                searchBoxMouseClicked(evt);
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                searchBoxMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                searchBoxMouseEntered(evt);
             }
         });
         searchBox.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -203,7 +171,6 @@ public class AddClass extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(91, 91, 91))))
         );
@@ -246,9 +213,10 @@ public class AddClass extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
         String item = itemNameTxt.getText();
         String quantity = itemQuantityTxt.getText();
-        String dateadded = itemDate.getText();
-        String expirydate = itemExpiry.getText();
-        table.addRow(new Object[]{item,quantity,dateadded, expirydate});
+        String expiryDate = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
+        String dateAdded = "Gotta fix";
+        table.addRow(new Object[]{item,quantity,dateAdded, expiryDate});
+         clearUi();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void searchBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBoxKeyReleased
@@ -260,38 +228,26 @@ public class AddClass extends javax.swing.JFrame {
         tr.setRowFilter(RowFilter.regexFilter(search));
         
     }//GEN-LAST:event_searchBoxKeyReleased
-
-  
-    private void searchBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBoxMouseClicked
-        //When user clicks on the search bar
-        searchBox.setText(" ");
-        
-    }//GEN-LAST:event_searchBoxMouseClicked
-
-    private void itemNameTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemNameTxtMouseClicked
-        //When user clicks on the item box
-        itemNameTxt.setText(" ");
-        
-    }//GEN-LAST:event_itemNameTxtMouseClicked
-
-    private void itemQuantityTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemQuantityTxtMouseClicked
-        // when user clicks on quantity
-        itemQuantityTxt.setText(" ");
-    }//GEN-LAST:event_itemQuantityTxtMouseClicked
-
-    private void itemDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemDateMouseClicked
-        // when user clicks on date
-        itemDate.setText(" ");
-    }//GEN-LAST:event_itemDateMouseClicked
-
-    private void itemExpiryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemExpiryMouseClicked
-        // when user clicks on expiry
-        itemExpiry.setText(" ");
-    }//GEN-LAST:event_itemExpiryMouseClicked
     
+    //empties text box 
+    private void searchBoxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBoxMouseEntered
+        // TODO add your handling code here:
+        searchBox.setText("");
+    }//GEN-LAST:event_searchBoxMouseEntered
+    //returns search text on leaving search text box
+    private void searchBoxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBoxMouseExited
+        // TODO add your handling code here:
+        searchBox.setText("Search...");
+    }//GEN-LAST:event_searchBoxMouseExited
+
+    //empties all textBoxs after pressing add Button
+    public void clearUi(){
+        itemNameTxt.setText("");
+        itemQuantityTxt.setText("");    
+    }    
+ 
    
-    
-    /**
+       /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -327,16 +283,14 @@ public class AddClass extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JTextField itemDate;
-    private javax.swing.JTextField itemExpiry;
     private javax.swing.JTextField itemNameTxt;
     private javax.swing.JTextField itemQuantityTxt;
     private javax.swing.JTable itemTable;
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

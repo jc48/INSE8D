@@ -5,9 +5,6 @@
  */
 package inventory;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 /**
  *
  * @author up812110

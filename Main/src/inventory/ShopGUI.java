@@ -48,7 +48,8 @@ public class ShopGUI extends javax.swing.JFrame {
         jList2 = new javax.swing.JList<>();
         backBtn = new javax.swing.JButton();
         jButton_transfer = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButton2_RemoveLeft = new javax.swing.JButton();
+        jButton2_RemoveRight = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,17 +171,24 @@ public class ShopGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton_transfer.setText("Got Item");
+        jButton_transfer.setText("Item Purchased");
         jButton_transfer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_transferActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Remove Item");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton2_RemoveLeft.setText("Remove Left Item");
+        jButton2_RemoveLeft.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton2_RemoveLeftActionPerformed(evt);
+            }
+        });
+
+        jButton2_RemoveRight.setText("Remove Right Item");
+        jButton2_RemoveRight.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2_RemoveRightActionPerformed(evt);
             }
         });
 
@@ -194,11 +202,10 @@ public class ShopGUI extends javax.swing.JFrame {
                         .addGap(46, 46, 46)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(jButton_transfer)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton_transfer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2_RemoveRight, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2_RemoveLeft, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -221,8 +228,10 @@ public class ShopGUI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addComponent(jButton_transfer)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2_RemoveLeft)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2_RemoveRight)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -247,7 +256,7 @@ public class ShopGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      DefaultListModel model = new DefaultListModel();   
+      DefaultListModel model = new DefaultListModel(); 
       list.add(addShopListTextField.getText());
       for(int i = 0; i < list.size(); i++ ){ 
         model.addElement(list.get(i));
@@ -277,9 +286,28 @@ public class ShopGUI extends javax.swing.JFrame {
         jList1.setModel(model1);
     }//GEN-LAST:event_jButton_transferActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton2_RemoveLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2_RemoveLeftActionPerformed
+       DefaultListModel model1 = (DefaultListModel) jList1.getModel();
+    
+       int selectedIndex = jList1.getSelectedIndex();
+       list.remove(list.get(jList1.getSelectedIndex()));
+       model1.remove(selectedIndex);
+       
+       jList1.setModel(model1);
+
+    }//GEN-LAST:event_jButton2_RemoveLeftActionPerformed
+
+    private void jButton2_RemoveRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2_RemoveRightActionPerformed
+       DefaultListModel model2 = (DefaultListModel) jList2.getModel(); 
+    
+       int selectedIndex = jList2.getSelectedIndex();
+       list2.remove(list2.get(jList2.getSelectedIndex()));
+       model2.remove(selectedIndex);
+       
+
+       jList2.setModel(model2);
+
+    }//GEN-LAST:event_jButton2_RemoveRightActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,7 +346,8 @@ public class ShopGUI extends javax.swing.JFrame {
     private javax.swing.JTextField addShopListTextField;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton2_RemoveLeft;
+    private javax.swing.JButton jButton2_RemoveRight;
     private javax.swing.JButton jButton_transfer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

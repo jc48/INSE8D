@@ -5,6 +5,11 @@
  */
 package inventory;
 
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+
 /**
  *
  * @author up800143
@@ -17,6 +22,8 @@ public class HomeGui extends javax.swing.JFrame {
      */
     public HomeGui() {
         initComponents();
+  
+        
     }
 
     /**
@@ -28,81 +35,135 @@ public class HomeGui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        addBtn = new javax.swing.JButton();
-        settingsBtn = new javax.swing.JButton();
-        shopBtn = new javax.swing.JButton();
-        inventoryBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        invenBtn = new javax.swing.JLabel();
+        shopBtn = new javax.swing.JLabel();
+        settingsBtn = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 255));
         setResizable(false);
 
-        addBtn.setText("+");
+        jPanel1.setBackground(new java.awt.Color(44, 62, 80));
 
-        settingsBtn.setText("Account Settings");
-
-        shopBtn.setText("Shopping List");
-        shopBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                shopBtnActionPerformed(evt);
+        invenBtn.setBackground(new java.awt.Color(255, 255, 255));
+        invenBtn.setText("            Inventory");
+        invenBtn.setOpaque(true);
+        invenBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                invenBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                invenBtnMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                invenBtnMouseEntered(evt);
             }
         });
 
-        inventoryBtn.setText("Inventory");
-        inventoryBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inventoryBtnActionPerformed(evt);
+        shopBtn.setBackground(new java.awt.Color(255, 255, 255));
+        shopBtn.setText("           Shopping List");
+        shopBtn.setOpaque(true);
+        shopBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                shopBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                shopBtnMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                shopBtnMouseEntered(evt);
             }
         });
+
+        settingsBtn.setBackground(new java.awt.Color(255, 255, 255));
+        settingsBtn.setText("           Settings");
+        settingsBtn.setOpaque(true);
+        settingsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settingsBtnMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(145, 145, 145)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(settingsBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(shopBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                        .addGap(130, 130, 130))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(invenBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(91, Short.MAX_VALUE)
+                .addComponent(invenBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(shopBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(settingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(127, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(shopBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(inventoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(92, 92, 92))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(addBtn)
-                        .addGap(78, 78, 78))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(inventoryBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(shopBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(settingsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    AddClass add = new AddClass(this);
-    private void inventoryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryBtnActionPerformed
-        // TODO add your handling code here:      
-         add.setLocationRelativeTo(null);
-         add.setVisible(true);
-         this.setVisible(false);
-    }//GEN-LAST:event_inventoryBtnActionPerformed
-    ShopGUI shop = new ShopGUI(this);
-    private void shopBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_shopBtnActionPerformed
-        // TODO add your handling code here:
+
+    private void hoverBtn(JLabel label){
+        Color myCustomColor = new Color(231, 76, 60);
+        //label.setForeground(myCustomColor);
+        label.setBackground(myCustomColor);
+    }
+    private void invenBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invenBtnMouseClicked
+        add.setLocationRelativeTo(null);
+        add.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_invenBtnMouseClicked
+
+    private void shopBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shopBtnMouseClicked
         shop.setLocationRelativeTo(null);
         shop.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_shopBtnActionPerformed
+    }//GEN-LAST:event_shopBtnMouseClicked
 
+    private void settingsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsBtnMouseClicked
+        System.out.println("Hello");
+    }//GEN-LAST:event_settingsBtnMouseClicked
+
+    private void invenBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invenBtnMouseEntered
+        hoverBtn(invenBtn);
+    }//GEN-LAST:event_invenBtnMouseEntered
+
+    private void shopBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shopBtnMouseEntered
+        hoverBtn(shopBtn);
+    }//GEN-LAST:event_shopBtnMouseEntered
+
+    private void invenBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invenBtnMouseExited
+         invenBtn.setBackground(Color.WHITE);
+    }//GEN-LAST:event_invenBtnMouseExited
+
+    private void shopBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_shopBtnMouseExited
+        shopBtn.setBackground(Color.WHITE);
+    }//GEN-LAST:event_shopBtnMouseExited
+    AddClass add = new AddClass(this);    ShopGUI shop = new ShopGUI(this);
     /**
      * @param args the command line arguments
      */
@@ -136,11 +197,13 @@ public class HomeGui extends javax.swing.JFrame {
             new HomeGui().setVisible(true);
         });
     }
+    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addBtn;
-    private javax.swing.JButton inventoryBtn;
-    private javax.swing.JButton settingsBtn;
-    private javax.swing.JButton shopBtn;
+    private javax.swing.JLabel invenBtn;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel settingsBtn;
+    private javax.swing.JLabel shopBtn;
     // End of variables declaration//GEN-END:variables
 }

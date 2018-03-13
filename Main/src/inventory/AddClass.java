@@ -55,7 +55,7 @@ public class AddClass extends javax.swing.JFrame {
         itemQuantityTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jLabel4 = new javax.swing.JLabel();
+        addBtn = new javax.swing.JLabel();
         searchBox = new javax.swing.JTextField();
         backBtn = new javax.swing.JLabel();
 
@@ -89,12 +89,18 @@ public class AddClass extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Expiry Date");
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("   ADD");
-        jLabel4.setOpaque(true);
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        addBtn.setBackground(new java.awt.Color(255, 255, 255));
+        addBtn.setText("    add");
+        addBtn.setOpaque(true);
+        addBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                addBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addBtnMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addBtnMouseEntered(evt);
             }
         });
 
@@ -111,7 +117,7 @@ public class AddClass extends javax.swing.JFrame {
                         .addGap(14, 14, 14))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -138,7 +144,7 @@ public class AddClass extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(75, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
@@ -241,7 +247,7 @@ public class AddClass extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backBtnMouseClicked
 
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
         DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
         String item = itemNameTxt.getText();
         String quantity = itemQuantityTxt.getText();
@@ -249,7 +255,7 @@ public class AddClass extends javax.swing.JFrame {
         String dateAdded = "Gotta fix";
         table.addRow(new Object[]{item,quantity,dateAdded, expiryDate});
         clearUi();
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_addBtnMouseClicked
 
     private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
         hoverBtn(backBtn);
@@ -258,8 +264,16 @@ public class AddClass extends javax.swing.JFrame {
     private void backBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseExited
         backBtn.setBackground(Color.WHITE);
     }//GEN-LAST:event_backBtnMouseExited
+
+    private void addBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseEntered
+        hoverBtn(addBtn);
+    }//GEN-LAST:event_addBtnMouseEntered
+
+    private void addBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseExited
+        addBtn.setBackground(Color.white);
+    }//GEN-LAST:event_addBtnMouseExited
     
-     public void hoverBtn(JLabel label){
+    private void hoverBtn(JLabel label){
         Color myCustomColor = new Color(231, 76, 60);
         label.setBackground(myCustomColor);
     }
@@ -305,6 +319,7 @@ public class AddClass extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addBtn;
     private javax.swing.JLabel backBtn;
     private javax.swing.JTextField itemNameTxt;
     private javax.swing.JTextField itemQuantityTxt;
@@ -313,7 +328,6 @@ public class AddClass extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

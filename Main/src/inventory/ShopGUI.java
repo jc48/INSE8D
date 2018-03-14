@@ -83,7 +83,7 @@ public class ShopGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(addShopListTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,8 +115,8 @@ public class ShopGUI extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 251, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -209,7 +209,7 @@ public class ShopGUI extends javax.swing.JFrame {
         });
 
         delBtn1.setBackground(new java.awt.Color(255, 255, 255));
-        delBtn1.setText("       Delete Left");
+        delBtn1.setText("       Delete Right");
         delBtn1.setOpaque(true);
         delBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -224,7 +224,7 @@ public class ShopGUI extends javax.swing.JFrame {
         });
 
         delBtn2.setBackground(new java.awt.Color(255, 255, 255));
-        delBtn2.setText("       Delete Right");
+        delBtn2.setText("       Delete Left");
         delBtn2.setOpaque(true);
         delBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -248,7 +248,7 @@ public class ShopGUI extends javax.swing.JFrame {
                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(compBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(delBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,7 +273,7 @@ public class ShopGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(delBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -354,11 +354,16 @@ public class ShopGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_compBtnMouseEntered
 
     private void delBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn1MouseClicked
-       DefaultListModel model2 = (DefaultListModel) compList.getModel();
+      try{
+       DefaultListModel model2 = (DefaultListModel) compList.getModel(); 
        int selectedIndex = compList.getSelectedIndex();
        list2.remove(list2.get(compList.getSelectedIndex()));
        model2.remove(selectedIndex);
        compList.setModel(model2);
+      }
+      catch(Exception e){
+          System.out.println(e);
+      }
     }//GEN-LAST:event_delBtn1MouseClicked
 
     private void delBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn1MouseExited
@@ -370,14 +375,18 @@ public class ShopGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_delBtn1MouseEntered
 
     private void delBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn2MouseClicked
-       DefaultListModel model1 = (DefaultListModel) addList.getModel();
+       try{
+        DefaultListModel model1 = (DefaultListModel) addList.getModel();
     
        int selectedIndex = addList.getSelectedIndex();
        list.remove(list.get(addList.getSelectedIndex()));
        model1.remove(selectedIndex);
        
        addList.setModel(model1);
-
+       }
+       catch (Exception e) {
+           System.out.println(e);
+       }
     }//GEN-LAST:event_delBtn2MouseClicked
 
     private void delBtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn2MouseExited

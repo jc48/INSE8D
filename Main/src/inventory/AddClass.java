@@ -151,9 +151,9 @@ public class AddClass extends javax.swing.JFrame {
                                 .addComponent(deleteButton))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76))
         );
@@ -295,7 +295,6 @@ public class AddClass extends javax.swing.JFrame {
         table.addRow(new Object[]{itemName, itemQuantity, dateAdded, expiryDate});   
 
     }
-    
     
     private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
         hoverBtn(backBtn);

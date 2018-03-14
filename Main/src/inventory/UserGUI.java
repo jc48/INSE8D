@@ -186,30 +186,35 @@ public class UserGUI extends javax.swing.JFrame {
           home.shop.getPanel().setBackground(Color.BLUE);
           home.add.getPanel().setBackground(Color.BLUE);
           jPanel1.setBackground(Color.BLUE);
+          home.add.jPanel2.setBackground(Color.blue);
        }
        else if(colour == "Red"){
            home.getPanel().setBackground(Color.RED);
            home.shop.getPanel().setBackground(Color.RED);
            home.add.getPanel().setBackground(Color.RED);
            jPanel1.setBackground(Color.RED);
+           home.add.jPanel2.setBackground(Color.red);
        }
        else if(colour == "Black"){
            home.getPanel().setBackground(Color.BLACK);
            home.shop.getPanel().setBackground(Color.BLACK);
            home.add.getPanel().setBackground(Color.BLACK);
            jPanel1.setBackground(Color.BLACK);
+           home.add.jPanel2.setBackground(Color.black);
        }      
        else if(colour == "White"){
            home.getPanel().setBackground(Color.WHITE);
            home.shop.getPanel().setBackground(Color.WHITE);
            home.add.getPanel().setBackground(Color.WHITE);
            jPanel1.setBackground(Color.WHITE);
+           home.add.jPanel2.setBackground(Color.white);
        }
        else if(colour == "Green"){
            home.getPanel().setBackground(Color.GREEN);
            home.shop.getPanel().setBackground(Color.GREEN);
            home.add.getPanel().setBackground(Color.GREEN);
            jPanel1.setBackground(Color.GREEN);
+           home.add.jPanel2.setBackground(Color.green);
        }
     }//GEN-LAST:event_coloursDropActionPerformed
 

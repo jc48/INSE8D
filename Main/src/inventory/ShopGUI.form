@@ -153,6 +153,9 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="addShopListTextField">
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addShopListTextFieldMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>

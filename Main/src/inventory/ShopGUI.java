@@ -60,6 +60,12 @@ public class ShopGUI extends javax.swing.JFrame {
 
         jPanel5.setBackground(new java.awt.Color(231, 76, 60));
 
+        addShopListTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addShopListTextFieldMouseClicked(evt);
+            }
+        });
+
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Add");
 
@@ -285,7 +291,12 @@ public class ShopGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        addItem(addShopListTextField.getText());
+        if(addShopListTextField.getText().isEmpty()){
+            addShopListTextField.setBackground(Color.red);
+        }
+        else{
+            addItem(addShopListTextField.getText());
+        }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
@@ -319,11 +330,17 @@ public class ShopGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_compBtnMouseClicked
     
     private void addItem(String itemName){
-      DefaultListModel model = new DefaultListModel(); 
-      list.add(itemName);
+      DefaultListModel model = new DefaultListModel();
+      try{
+        list.add(itemName);
+      }
+       catch(Exception e){
+         addShopListTextField.setBackground(Color.red);
+        }
       for(int i = 0; i < list.size(); i++ ){ 
         model.addElement(list.get(i));
-      }
+        }
+     
       addList.setModel(model);
       addShopListTextField.setText("");
     }
@@ -370,6 +387,10 @@ public class ShopGUI extends javax.swing.JFrame {
     private void delBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn2MouseEntered
         hoverBtn(delBtn2);
     }//GEN-LAST:event_delBtn2MouseEntered
+
+    private void addShopListTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addShopListTextFieldMouseClicked
+       addShopListTextField.setBackground(Color.white);
+    }//GEN-LAST:event_addShopListTextFieldMouseClicked
    
     private void hoverBtn(JLabel label){
         Color myCustomColor = new Color(231, 76, 60);

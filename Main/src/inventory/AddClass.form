@@ -216,6 +216,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="itemNameTxt">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemNameTxtMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
@@ -226,6 +229,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="itemQuantityTxt">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemQuantityTxtMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>

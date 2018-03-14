@@ -83,8 +83,20 @@ public class AddClass extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Item");
 
+        itemNameTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemNameTxtMouseClicked(evt);
+            }
+        });
+
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Quantity");
+
+        itemQuantityTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemQuantityTxtMouseClicked(evt);
+            }
+        });
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Expiry Date");
@@ -250,7 +262,14 @@ public class AddClass extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnMouseClicked
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
+        try{
         AddToTable(itemNameTxt.getText(), Integer.parseInt(itemQuantityTxt.getText()));
+        }
+        catch(Exception e){
+            itemNameTxt.setBackground(Color.red);
+            itemQuantityTxt.setBackground(Color.red);
+            jDateChooser2.setBackground(Color.red);
+        }
         clearUi();
     }//GEN-LAST:event_addBtnMouseClicked
     
@@ -258,8 +277,11 @@ public class AddClass extends javax.swing.JFrame {
         DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
         String expiryDate = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
         String dateAdded = "Gotta fix";
-        table.addRow(new Object[]{itemName, itemQuantity, dateAdded, expiryDate});    
+        table.addRow(new Object[]{itemName, itemQuantity, dateAdded, expiryDate});   
+
     }
+    
+    
     private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
         hoverBtn(backBtn);
     }//GEN-LAST:event_backBtnMouseEntered
@@ -275,6 +297,14 @@ public class AddClass extends javax.swing.JFrame {
     private void addBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseExited
         addBtn.setBackground(Color.white);
     }//GEN-LAST:event_addBtnMouseExited
+
+    private void itemNameTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemNameTxtMouseClicked
+       itemNameTxt.setBackground(Color.white);
+    }//GEN-LAST:event_itemNameTxtMouseClicked
+
+    private void itemQuantityTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemQuantityTxtMouseClicked
+        itemQuantityTxt.setBackground(Color.white);
+    }//GEN-LAST:event_itemQuantityTxtMouseClicked
     
     private void hoverBtn(JLabel label){
         Color myCustomColor = new Color(231, 76, 60);

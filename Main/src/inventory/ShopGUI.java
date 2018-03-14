@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -302,7 +303,11 @@ public class ShopGUI extends javax.swing.JFrame {
     private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
         hoverBtn(backBtn);
     }//GEN-LAST:event_backBtnMouseEntered
-
+    
+    public JPanel getPanel(){
+        return jPanel1;
+    }
+    
     private void backBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseExited
         backBtn.setBackground(Color.WHITE);
     }//GEN-LAST:event_backBtnMouseExited

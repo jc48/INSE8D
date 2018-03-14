@@ -13,8 +13,15 @@ import java.util.ArrayList;
  */
 public class Inventory extends Item{
    
+    /**
+     *
+     */
     public ArrayList <Item> inventory1 = new ArrayList<>();
     //public int id;
+
+    /**
+     *
+     */
     public Inventory(){
        //id = id1;
        // this.inventory1;
@@ -28,19 +35,36 @@ public class Inventory extends Item{
 //        return inventory1;
 //    }
 //    
+
+    /**
+     *
+     * @return
+     */
     
     public ArrayList<Item> getInveItem(){
         return inventory1;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getInvenItemListSize(){
         return inventory1.size();
     }
 
+    /**
+     *
+     * @param i
+     */
     public void addItem(Item i){
         inventory1.add(i);
     }
     
+    /**
+     *
+     * @param i
+     */
     public void removeItem(Item i){
         inventory1.remove(i);
     

@@ -7,11 +7,6 @@ package inventory;
 
 import java.awt.Color;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.RowFilter;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -29,6 +24,15 @@ public class UserGUI extends javax.swing.JFrame {
         initComponents();
         this.home = home;
         
+    }
+    
+    /**
+     * Returns the value of username
+     * 
+     * @return username value of username
+     */
+    public String getUserName(){
+        return username.getText();
     }
     
     private void hoverBtn(JLabel label){
@@ -49,7 +53,7 @@ public class UserGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JLabel();
         coloursDrop = new javax.swing.JComboBox<>();
-        name = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,22 +92,22 @@ public class UserGUI extends javax.swing.JFrame {
             }
         });
 
-        name.setText("Enter Name");
-        name.addMouseListener(new java.awt.event.MouseAdapter() {
+        username.setText("Enter Name");
+        username.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nameMouseClicked(evt);
+                usernameMouseClicked(evt);
             }
         });
-        name.addInputMethodListener(new java.awt.event.InputMethodListener() {
+        username.addInputMethodListener(new java.awt.event.InputMethodListener() {
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                nameInputMethodTextChanged(evt);
+                usernameInputMethodTextChanged(evt);
             }
             public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
-        name.addKeyListener(new java.awt.event.KeyAdapter() {
+        username.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                nameKeyPressed(evt);
+                usernameKeyPressed(evt);
             }
         });
 
@@ -122,9 +126,9 @@ public class UserGUI extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(coloursDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,8 +140,8 @@ public class UserGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(152, Short.MAX_VALUE))
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,35 +178,35 @@ public class UserGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_coloursDropMouseClicked
 
-    private void nameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_nameInputMethodTextChanged
+    private void usernameInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_usernameInputMethodTextChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameInputMethodTextChanged
+    }//GEN-LAST:event_usernameInputMethodTextChanged
 
         
     private void coloursDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloursDropActionPerformed
        String colour = coloursDrop.getSelectedItem().toString();
-       if(colour == "Blue"){
+       if (colour.equals("Blue")){
           home.getPanel().setBackground(Color.BLUE);
           home.shop.getPanel().setBackground(Color.BLUE);
           home.add.getPanel().setBackground(Color.BLUE);
           jPanel1.setBackground(Color.BLUE);
           home.add.jPanel2.setBackground(Color.blue);
        }
-       else if(colour == "Red"){
+       else if(colour.equals("Red")){
            home.getPanel().setBackground(Color.RED);
            home.shop.getPanel().setBackground(Color.RED);
            home.add.getPanel().setBackground(Color.RED);
            jPanel1.setBackground(Color.RED);
            home.add.jPanel2.setBackground(Color.red);
        }
-       else if(colour == "Black"){
+       else if(colour.equals("Black")){
            home.getPanel().setBackground(Color.BLACK);
            home.shop.getPanel().setBackground(Color.BLACK);
            home.add.getPanel().setBackground(Color.BLACK);
            jPanel1.setBackground(Color.BLACK);
            home.add.jPanel2.setBackground(Color.black);
        }      
-       else if(colour == "White"){
+       else if(colour.equals("White")){
            home.getPanel().setBackground(Color.WHITE);
            home.shop.getPanel().setBackground(Color.WHITE);
            home.add.getPanel().setBackground(Color.WHITE);
@@ -218,13 +222,13 @@ public class UserGUI extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_coloursDropActionPerformed
 
-    private void nameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameKeyPressed
-       home.getUsername().setText("Hello, "+name.getText());
-    }//GEN-LAST:event_nameKeyPressed
+    private void usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyPressed
+       home.getUsername().setText("Hello, "+username.getText());
+    }//GEN-LAST:event_usernameKeyPressed
 
-    private void nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nameMouseClicked
-        name.setText("");
-    }//GEN-LAST:event_nameMouseClicked
+    private void usernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameMouseClicked
+        username.setText("");
+    }//GEN-LAST:event_usernameMouseClicked
 
     /**
      * @param args the command line arguments
@@ -265,6 +269,6 @@ public class UserGUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> coloursDrop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField name;
+    public javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,6 +24,7 @@ public class AddClass extends javax.swing.JFrame {
     
     /**
      * Creates new form NewJFrame
+     * @param home 
      */
     public AddClass(HomeGui home) {
         initComponents();
@@ -32,13 +33,25 @@ public class AddClass extends javax.swing.JFrame {
       
     }
     
-    public void message(){
-        System.out.println("I worked"); 
+  
+    
+    /**
+     * Return the panel
+     * @return panel of the AddClass JFrame
+     */
+    public JPanel getPanel(){
+        return bodyPanel;
     }
     
-     public JPanel getPanel(){
-        return jPanel1;
+    public int getitemQuantity(){
+        return Integer.parseInt(itemQuantityTxt.getText());
     }
+    
+    public String getItemName(){
+        return itemName.getText();
+    }
+    
+    
     
     
     /**
@@ -51,12 +64,12 @@ public class AddClass extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField2 = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
+        bodyPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         itemTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        itemNameTxt = new javax.swing.JTextField();
+        itemName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         itemQuantityTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -71,7 +84,7 @@ public class AddClass extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(44, 62, 80));
+        bodyPanel.setBackground(new java.awt.Color(44, 62, 80));
 
         jPanel2.setBackground(new java.awt.Color(44, 62, 80));
 
@@ -90,9 +103,9 @@ public class AddClass extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Item");
 
-        itemNameTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+        itemName.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                itemNameTxtMouseClicked(evt);
+                itemNameMouseClicked(evt);
             }
         });
 
@@ -150,7 +163,7 @@ public class AddClass extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(itemQuantityTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                                .addComponent(itemNameTxt))
+                                .addComponent(itemName))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(deleteButton))))
@@ -168,7 +181,7 @@ public class AddClass extends javax.swing.JFrame {
                 .addGap(77, 77, 77)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(itemNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -216,25 +229,25 @@ public class AddClass extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(bodyPanel);
+        bodyPanel.setLayout(bodyPanelLayout);
+        bodyPanelLayout.setHorizontalGroup(
+            bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bodyPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(bodyPanelLayout.createSequentialGroup()
                         .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        bodyPanelLayout.setVerticalGroup(
+            bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(bodyPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(bodyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
@@ -246,16 +259,16 @@ public class AddClass extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bodyPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(bodyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
- 
+     
     private void searchBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBoxKeyReleased
         search(searchBox.getText());
     }//GEN-LAST:event_searchBoxKeyReleased
@@ -283,10 +296,10 @@ public class AddClass extends javax.swing.JFrame {
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
         try{
-        AddToTable(itemNameTxt.getText(), Integer.parseInt(itemQuantityTxt.getText()));
+        AddToTable(itemName.getText(), Integer.parseInt(itemQuantityTxt.getText()));
         }
-        catch(Exception e){
-            itemNameTxt.setBackground(Color.red);
+        catch(NumberFormatException e){
+            itemName.setBackground(Color.red);
             itemQuantityTxt.setBackground(Color.red);
             //jDateChooser2.setBackground(Color.red);
         }
@@ -317,9 +330,9 @@ public class AddClass extends javax.swing.JFrame {
         addBtn.setBackground(Color.white);
     }//GEN-LAST:event_addBtnMouseExited
 
-    private void itemNameTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemNameTxtMouseClicked
-       itemNameTxt.setBackground(Color.white);
-    }//GEN-LAST:event_itemNameTxtMouseClicked
+    private void itemNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemNameMouseClicked
+       itemName.setBackground(Color.white);
+    }//GEN-LAST:event_itemNameMouseClicked
 
     private void itemQuantityTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemQuantityTxtMouseClicked
         itemQuantityTxt.setBackground(Color.white);
@@ -345,14 +358,23 @@ public class AddClass extends javax.swing.JFrame {
             }
         }           
     }//GEN-LAST:event_deleteButtonActionPerformed
-    
+    /**
+    * Changes the color of a label 
+    * 
+    * @param label the label object to change color
+    */
     private void hoverBtn(JLabel label){
         Color myCustomColor = new Color(231, 76, 60);
         label.setBackground(myCustomColor);
     }
-    //empties all textBoxs after pressing add Button
+    
+    
+
+    /**
+     * Empties all textBoxes text after clicking
+     */
     public void clearUi(){
-        itemNameTxt.setText("");
+        itemName.setText("");
         itemQuantityTxt.setText("");    
     }    
  
@@ -394,19 +416,19 @@ public class AddClass extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addBtn;
     private javax.swing.JLabel backBtn;
+    private javax.swing.JPanel bodyPanel;
     private javax.swing.JButton deleteButton;
-    private javax.swing.JTextField itemNameTxt;
-    private javax.swing.JTextField itemQuantityTxt;
+    public javax.swing.JTextField itemName;
+    public javax.swing.JTextField itemQuantityTxt;
     private javax.swing.JTable itemTable;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField searchBox;
+    public javax.swing.JTextField searchBox;
     // End of variables declaration//GEN-END:variables
 
     private HomeGui HomeGui() {

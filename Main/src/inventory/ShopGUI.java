@@ -37,10 +37,10 @@ public class ShopGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        viewPanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        addShopListTextField = new javax.swing.JTextField();
+        addItem = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -57,13 +57,13 @@ public class ShopGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(44, 62, 80));
+        viewPanel.setBackground(new java.awt.Color(44, 62, 80));
 
         jPanel5.setBackground(new java.awt.Color(231, 76, 60));
 
-        addShopListTextField.addMouseListener(new java.awt.event.MouseAdapter() {
+        addItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addShopListTextFieldMouseClicked(evt);
+                addItemMouseClicked(evt);
             }
         });
 
@@ -85,7 +85,7 @@ public class ShopGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(addShopListTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addItem, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -95,7 +95,7 @@ public class ShopGUI extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addShopListTextField)
+                    .addComponent(addItem)
                     .addComponent(jLabel1)
                     .addComponent(addBtn))
                 .addContainerGap())
@@ -239,18 +239,18 @@ public class ShopGUI extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout viewPanelLayout = new javax.swing.GroupLayout(viewPanel);
+        viewPanel.setLayout(viewPanelLayout);
+        viewPanelLayout.setHorizontalGroup(
+            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewPanelLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(viewPanelLayout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(compBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(delBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(delBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -258,15 +258,15 @@ public class ShopGUI extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        viewPanelLayout.setVerticalGroup(
+            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewPanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(viewPanelLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(compBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -281,22 +281,22 @@ public class ShopGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(viewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(viewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        if(addShopListTextField.getText().isEmpty()){
-            addShopListTextField.setBackground(Color.red);
+        if(addItem.getText().isEmpty()){
+            addItem.setBackground(Color.red);
         }
         else{
-            addItem(addShopListTextField.getText());
+            addItem(addItem.getText());
         }
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -304,20 +304,44 @@ public class ShopGUI extends javax.swing.JFrame {
         hoverBtn(backBtn);
     }//GEN-LAST:event_backBtnMouseEntered
     
+    /**
+     * Return the panel
+     * @return panel of the ShopGUI JFrame
+     */
     public JPanel getPanel(){
-        return jPanel1;
+        return viewPanel;
     }
     
+    public String getAddItem(){
+        return addItem.getText();
+    }
+    
+    /**
+     * On mouse exited events changes color of field 
+     *
+     * @param evt  registers mouse exited event
+     */
     private void backBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseExited
         backBtn.setBackground(Color.WHITE);
     }//GEN-LAST:event_backBtnMouseExited
-
+    
+    /**
+     * On mouse clicked closes current JFrame and opens Home JFrame 
+     *
+     * @param evt  registers mouse clicked event
+     */
     private void backBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseClicked
         home.setVisible(true);
         home.setLocationRelativeTo(null);
         this.setVisible(false);
     }//GEN-LAST:event_backBtnMouseClicked
-
+    
+    /**
+     * On mouse clicked selected item from shopping list
+     * Moves to complete list
+     *
+     * @param evt  registers mouse clicked event
+     */
     private void compBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compBtnMouseClicked
         DefaultListModel model2 = new DefaultListModel(); 
         DefaultListModel model1 = (DefaultListModel) addList.getModel(); 
@@ -334,30 +358,50 @@ public class ShopGUI extends javax.swing.JFrame {
         addList.setModel(model1);
     }//GEN-LAST:event_compBtnMouseClicked
     
+    /**
+     * Adds items to shopping list
+     *
+     * @param itemName the string of item to add to shopping list
+     */
     private void addItem(String itemName){
       DefaultListModel model = new DefaultListModel();
       try{
         list.add(itemName);
       }
        catch(Exception e){
-         addShopListTextField.setBackground(Color.red);
+         addItem.setBackground(Color.red);
         }
       for(int i = 0; i < list.size(); i++ ){ 
         model.addElement(list.get(i));
         }
      
       addList.setModel(model);
-      addShopListTextField.setText("");
+      addItem.setText("");
     }
     
+    /**
+     * On mouse exited events changes color of field 
+     *
+     * @param evt  registers mouse exited event
+     */
     private void compBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compBtnMouseExited
         compBtn.setBackground(Color.WHITE);
     }//GEN-LAST:event_compBtnMouseExited
-
+    
+    /**
+     * On mouse entered events changes color of field 
+     *
+     * @param evt  registers mouse entered event
+     */
     private void compBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compBtnMouseEntered
         hoverBtn(compBtn);
     }//GEN-LAST:event_compBtnMouseEntered
-
+    
+    /**
+     * On click events delete items from right list
+     *
+     * @param evt  registers click event
+     */
     private void delBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn1MouseClicked
       try{
        DefaultListModel model2 = (DefaultListModel) compList.getModel(); 
@@ -370,15 +414,30 @@ public class ShopGUI extends javax.swing.JFrame {
           System.out.println(e);
       }
     }//GEN-LAST:event_delBtn1MouseClicked
-
+    
+    /**
+     * On mouse exited events changes color of field 
+     *
+     * @param evt  registers mouse exited event
+     */
     private void delBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn1MouseExited
         delBtn1.setBackground(Color.WHITE);
     }//GEN-LAST:event_delBtn1MouseExited
-
+    
+     /**
+     * On mouse entered events changes color of field 
+     *
+     * @param evt  registers mouse entered event
+     */
     private void delBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn1MouseEntered
         hoverBtn(delBtn1);
     }//GEN-LAST:event_delBtn1MouseEntered
-
+     
+    /**
+     * On click events delete items from left list
+     *
+     * @param evt  registers click event
+     */
     private void delBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn2MouseClicked
        try{
         DefaultListModel model1 = (DefaultListModel) addList.getModel();
@@ -393,18 +452,33 @@ public class ShopGUI extends javax.swing.JFrame {
            System.out.println(e);
        }
     }//GEN-LAST:event_delBtn2MouseClicked
-
+    
+     /**
+     * On mouse exit events changes color of field 
+     *
+     * @param evt  registers mouse exit event
+     */
     private void delBtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn2MouseExited
         delBtn2.setBackground(Color.WHITE);
     }//GEN-LAST:event_delBtn2MouseExited
-
+    
+      /**
+     * On hover events changes color of field 
+     *
+     * @param evt  registers hover event
+     */
     private void delBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn2MouseEntered
         hoverBtn(delBtn2);
     }//GEN-LAST:event_delBtn2MouseEntered
-
-    private void addShopListTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addShopListTextFieldMouseClicked
-       addShopListTextField.setBackground(Color.white);
-    }//GEN-LAST:event_addShopListTextFieldMouseClicked
+    
+     /**
+     * On click events changes color of field to white
+     *
+     * @param evt  registers click event
+     */
+    private void addItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addItemMouseClicked
+       addItem.setBackground(Color.white);
+    }//GEN-LAST:event_addItemMouseClicked
    
     private void hoverBtn(JLabel label){
         Color myCustomColor = new Color(231, 76, 60);
@@ -445,8 +519,8 @@ public class ShopGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
+    public javax.swing.JTextField addItem;
     private javax.swing.JList<String> addList;
-    private javax.swing.JTextField addShopListTextField;
     private javax.swing.JLabel backBtn;
     private javax.swing.JLabel compBtn;
     private javax.swing.JList<String> compList;
@@ -454,12 +528,12 @@ public class ShopGUI extends javax.swing.JFrame {
     private javax.swing.JLabel delBtn2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel viewPanel;
     // End of variables declaration//GEN-END:variables
 }

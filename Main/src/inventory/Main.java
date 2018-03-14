@@ -11,9 +11,11 @@ package inventory;
  */
 public class Main {
 
-   // public Main() {    /* Creates a new instance of Main */
-   // }   
-    //static Scanner console = new Scanner(System.in);  //object of Scanner class
+
+    /**
+     *
+     * @param args
+     */
     
     public static void main(String[] args) {
         

@@ -5,9 +5,6 @@
  */
 package inventory;
 
-import inventory.AddClass;
-import inventory.ShopGUI;
-import inventory.UserGUI;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,7 +14,9 @@ import javax.swing.JPanel;
  * @author up800143
  */
 public class HomeGui extends javax.swing.JFrame {
-    //private ShopGUI shop;
+    AddClass add = new AddClass(this);
+    ShopGUI shop = new ShopGUI(this);
+    UserGUI settings = new UserGUI(this);
 
     /**
      * Creates new form testClass
@@ -37,7 +36,7 @@ public class HomeGui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        viewPanel = new javax.swing.JPanel();
         invenBtn = new javax.swing.JLabel();
         shopBtn = new javax.swing.JLabel();
         settingsBtn = new javax.swing.JLabel();
@@ -47,7 +46,7 @@ public class HomeGui extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 153, 255));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(44, 62, 80));
+        viewPanel.setBackground(new java.awt.Color(44, 62, 80));
 
         invenBtn.setBackground(new java.awt.Color(255, 255, 255));
         invenBtn.setText("            Inventory");
@@ -96,32 +95,32 @@ public class HomeGui extends javax.swing.JFrame {
 
         userName.setForeground(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout viewPanelLayout = new javax.swing.GroupLayout(viewPanel);
+        viewPanel.setLayout(viewPanelLayout);
+        viewPanelLayout.setHorizontalGroup(
+            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(viewPanelLayout.createSequentialGroup()
                 .addGap(145, 145, 145)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(viewPanelLayout.createSequentialGroup()
+                        .addGroup(viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(settingsBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(shopBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
                         .addGap(130, 130, 130))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(viewPanelLayout.createSequentialGroup()
                         .addComponent(invenBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(viewPanelLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(userName)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        viewPanelLayout.setVerticalGroup(
+            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewPanelLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(userName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addComponent(invenBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(shopBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,16 +133,21 @@ public class HomeGui extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(viewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(viewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+     /**
+    * Changes the color of a label 
+    * 
+    * @param label the label object to change color
+    */
     private void hoverBtn(JLabel label){
         Color myCustomColor = new Color(231, 76, 60);
         label.setBackground(myCustomColor);
@@ -186,10 +190,18 @@ public class HomeGui extends javax.swing.JFrame {
         hoverBtn(settingsBtn);
     }//GEN-LAST:event_settingsBtnMouseEntered
     
+     /**
+     * Return the panel
+     * @return panel of the AddClass JFrame
+     */
     public JPanel getPanel(){
-        return jPanel1;
+        return viewPanel;
     }
     
+    /**
+     *
+     * @return userName input from the User
+     */
     public JLabel getUsername(){
        return userName;
     }
@@ -197,9 +209,7 @@ public class HomeGui extends javax.swing.JFrame {
     private void settingsBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsBtnMouseExited
          settingsBtn.setBackground(Color.WHITE);
     }//GEN-LAST:event_settingsBtnMouseExited
-    AddClass add = new AddClass(this);
-    ShopGUI shop = new ShopGUI(this);
-    UserGUI settings = new UserGUI(this);
+    
     /**
      * @param args the command line arguments
      */
@@ -238,9 +248,9 @@ public class HomeGui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel invenBtn;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel settingsBtn;
     private javax.swing.JLabel shopBtn;
     private javax.swing.JLabel userName;
+    private javax.swing.JPanel viewPanel;
     // End of variables declaration//GEN-END:variables
 }

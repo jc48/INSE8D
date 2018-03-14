@@ -62,6 +62,7 @@ public class AddClass extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         addBtn = new javax.swing.JLabel();
         deleteButton = new javax.swing.JButton();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         searchBox = new javax.swing.JTextField();
         backBtn = new javax.swing.JLabel();
 
@@ -153,8 +154,11 @@ public class AddClass extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(deleteButton))))
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
+                .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76))
         );
@@ -170,8 +174,10 @@ public class AddClass extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(itemQuantityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addComponent(jLabel3)
-                .addGap(94, 94, 94)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(88, 88, 88)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -289,7 +295,7 @@ public class AddClass extends javax.swing.JFrame {
     
     private void AddToTable(String itemName, int itemQuantity){   
         DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
-        String expiryDate = "Date";//((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
+        String expiryDate = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
         String dateAdded = "Gotta fix";
         table.addRow(new Object[]{itemName, itemQuantity, dateAdded, expiryDate});   
 
@@ -392,6 +398,7 @@ public class AddClass extends javax.swing.JFrame {
     private javax.swing.JTextField itemNameTxt;
     private javax.swing.JTextField itemQuantityTxt;
     private javax.swing.JTable itemTable;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

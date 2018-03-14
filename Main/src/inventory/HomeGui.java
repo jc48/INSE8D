@@ -6,8 +6,6 @@
 package inventory;
 
 import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
@@ -129,7 +127,6 @@ public class HomeGui extends javax.swing.JFrame {
 
     private void hoverBtn(JLabel label){
         Color myCustomColor = new Color(231, 76, 60);
-        //label.setForeground(myCustomColor);
         label.setBackground(myCustomColor);
     }
     private void invenBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_invenBtnMouseClicked

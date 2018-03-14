@@ -54,8 +54,8 @@ public class AddClass extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         itemQuantityTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         addBtn = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         searchBox = new javax.swing.JTextField();
         backBtn = new javax.swing.JLabel();
 
@@ -120,13 +120,17 @@ public class AddClass extends javax.swing.JFrame {
                             .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(itemQuantityTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                    .addComponent(itemNameTxt))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(itemQuantityTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(itemNameTxt))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(76, 76, 76))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,10 +144,10 @@ public class AddClass extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(itemQuantityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(96, 96, 96)
                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(75, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -221,23 +225,21 @@ public class AddClass extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
  
     private void searchBoxKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchBoxKeyReleased
-        
-        DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
-        String search = searchBox.getText();
-        TableRowSorter<DefaultTableModel> tr = new TableRowSorter<DefaultTableModel>(table);
-        itemTable.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter(search));
-        
+        search(searchBox.getText());
     }//GEN-LAST:event_searchBoxKeyReleased
-    
+    private void search(String itemName){
+        DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
+        TableRowSorter<DefaultTableModel> tr;
+        tr = new TableRowSorter<>(table);
+        itemTable.setRowSorter(tr);
+        tr.setRowFilter(RowFilter.regexFilter(itemName));
+    }
     //empties text box 
     private void searchBoxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBoxMouseEntered
-        // TODO add your handling code here:
         searchBox.setText("");
     }//GEN-LAST:event_searchBoxMouseEntered
     //returns search text on leaving search text box
     private void searchBoxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchBoxMouseExited
-        // TODO add your handling code here:
         searchBox.setText("Search...");
     }//GEN-LAST:event_searchBoxMouseExited
 
@@ -248,15 +250,16 @@ public class AddClass extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnMouseClicked
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
-        DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
-        String item = itemNameTxt.getText();
-        String quantity = itemQuantityTxt.getText();
-        String expiryDate = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
-        String dateAdded = "Gotta fix";
-        table.addRow(new Object[]{item,quantity,dateAdded, expiryDate});
+        AddToTable(itemNameTxt.getText(), Integer.parseInt(itemQuantityTxt.getText()));
         clearUi();
     }//GEN-LAST:event_addBtnMouseClicked
-
+    
+    private void AddToTable(String itemName, int itemQuantity){   
+        DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
+        String expiryDate = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
+        String dateAdded = "Gotta fix";
+        table.addRow(new Object[]{itemName, itemQuantity, dateAdded, expiryDate});    
+    }
     private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
         hoverBtn(backBtn);
     }//GEN-LAST:event_backBtnMouseEntered
@@ -324,7 +327,7 @@ public class AddClass extends javax.swing.JFrame {
     private javax.swing.JTextField itemNameTxt;
     private javax.swing.JTextField itemQuantityTxt;
     private javax.swing.JTable itemTable;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

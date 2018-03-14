@@ -5,8 +5,6 @@
  */
 package inventory;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author up812110

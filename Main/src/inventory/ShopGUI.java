@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -21,6 +20,7 @@ public class ShopGUI extends javax.swing.JFrame {
      ArrayList<String> list2 = new ArrayList<>();
     /**
      * Creates new form ShopGUI
+     * @param home
      */
     public ShopGUI(HomeGui home) {
         initComponents();
@@ -41,7 +41,7 @@ public class ShopGUI extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         addShopListTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        addBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         addList = new javax.swing.JList<>();
         jPanel4 = new javax.swing.JPanel();
@@ -63,10 +63,10 @@ public class ShopGUI extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Add");
 
-        jButton1.setText("+");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        addBtn.setText("+");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                addBtnActionPerformed(evt);
             }
         });
 
@@ -80,7 +80,7 @@ public class ShopGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(addShopListTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -90,7 +90,7 @@ public class ShopGUI extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addShopListTextField)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(addBtn))
                 .addContainerGap())
         );
 
@@ -284,15 +284,9 @@ public class ShopGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      DefaultListModel model = new DefaultListModel(); 
-      list.add(addShopListTextField.getText());
-      for(int i = 0; i < list.size(); i++ ){ 
-        model.addElement(list.get(i));
-      }
-      addList.setModel(model);
-      addShopListTextField.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        addItem(addShopListTextField.getText());
+    }//GEN-LAST:event_addBtnActionPerformed
 
     private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
         hoverBtn(backBtn);
@@ -310,25 +304,30 @@ public class ShopGUI extends javax.swing.JFrame {
 
     private void compBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compBtnMouseClicked
         DefaultListModel model2 = new DefaultListModel(); 
-        DefaultListModel model1 = (DefaultListModel) addList.getModel();
-
-        int[] indexs = addList.getSelectedIndices();
-        
-        int selectedIndex = addList.getSelectedIndex();
-        
+        DefaultListModel model1 = (DefaultListModel) addList.getModel(); 
+        int[] index = addList.getSelectedIndices();       
+        int selectedIndex = addList.getSelectedIndex();    
         String selectedItem = list.get(selectedIndex);
         list2.add(list.get(addList.getSelectedIndex()));
         list.remove(list.get(addList.getSelectedIndex()));
-
         for(int j = 0; j < list2.size(); j++){
             model2.addElement(list2.get(j));
             model1.removeElement(list2.get(j));
         }
-       
         compList.setModel(model2);
         addList.setModel(model1);
     }//GEN-LAST:event_compBtnMouseClicked
-
+    
+    private void addItem(String itemName){
+      DefaultListModel model = new DefaultListModel(); 
+      list.add(itemName);
+      for(int i = 0; i < list.size(); i++ ){ 
+        model.addElement(list.get(i));
+      }
+      addList.setModel(model);
+      addShopListTextField.setText("");
+    }
+    
     private void compBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_compBtnMouseExited
         compBtn.setBackground(Color.WHITE);
     }//GEN-LAST:event_compBtnMouseExited
@@ -338,13 +337,10 @@ public class ShopGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_compBtnMouseEntered
 
     private void delBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn1MouseClicked
-        DefaultListModel model2 = (DefaultListModel) compList.getModel(); 
-    
+       DefaultListModel model2 = (DefaultListModel) compList.getModel();
        int selectedIndex = compList.getSelectedIndex();
        list2.remove(list2.get(compList.getSelectedIndex()));
        model2.remove(selectedIndex);
-       
-
        compList.setModel(model2);
     }//GEN-LAST:event_delBtn1MouseClicked
 
@@ -357,7 +353,7 @@ public class ShopGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_delBtn1MouseEntered
 
     private void delBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtn2MouseClicked
-        DefaultListModel model1 = (DefaultListModel) addList.getModel();
+       DefaultListModel model1 = (DefaultListModel) addList.getModel();
     
        int selectedIndex = addList.getSelectedIndex();
        list.remove(list.get(addList.getSelectedIndex()));
@@ -413,6 +409,7 @@ public class ShopGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBtn;
     private javax.swing.JList<String> addList;
     private javax.swing.JTextField addShopListTextField;
     private javax.swing.JLabel backBtn;
@@ -420,7 +417,6 @@ public class ShopGUI extends javax.swing.JFrame {
     private javax.swing.JList<String> compList;
     private javax.swing.JLabel delBtn1;
     private javax.swing.JLabel delBtn2;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

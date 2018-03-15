@@ -7,6 +7,8 @@ package inventory;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.DefaultComboBoxModel;
+import java.io.* ;
 
 /**
  *
@@ -14,7 +16,7 @@ import javax.swing.JLabel;
  */
 public class UserGUI extends javax.swing.JFrame {
      private final HomeGui home;
-     
+     static String userFile = "User.txt";
 
     /**
      * Creates new form UserGUI
@@ -22,6 +24,8 @@ public class UserGUI extends javax.swing.JFrame {
      */
     public UserGUI(HomeGui home) {
         initComponents();
+        DefaultComboBoxModel model = new DefaultComboBoxModel(userList());
+        userDrop.setModel( model );
         this.home = home;
         
     }
@@ -54,6 +58,9 @@ public class UserGUI extends javax.swing.JFrame {
         backBtn = new javax.swing.JLabel();
         coloursDrop = new javax.swing.JComboBox<>();
         username = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        userDrop = new javax.swing.JComboBox<>();
+        addUserBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,7 +69,7 @@ public class UserGUI extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(426, 300));
         jPanel1.setRequestFocusEnabled(false);
 
-        jLabel1.setText("Change User Name:");
+        jLabel1.setText("Add User:");
         jLabel1.setOpaque(true);
 
         backBtn.setBackground(new java.awt.Color(255, 255, 255));
@@ -99,10 +106,10 @@ public class UserGUI extends javax.swing.JFrame {
             }
         });
         username.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 usernameInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         username.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -111,37 +118,66 @@ public class UserGUI extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Select User:");
+        jLabel2.setOpaque(true);
+
+        userDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        userDrop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userDropActionPerformed(evt);
+            }
+        });
+
+        addUserBtn.setText("Add");
+        addUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(coloursDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(123, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addComponent(coloursDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(username))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(userDrop, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addUserBtn)
+                .addGap(11, 11, 11))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(coloursDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(coloursDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(156, Short.MAX_VALUE))
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addUserBtn))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,13 +264,65 @@ public class UserGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_coloursDropActionPerformed
 
     private void usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyPressed
-       home.getUsername().setText("Hello, "+username.getText());
+       //home.getUsername().setText("Hello, "+username.getText());
     }//GEN-LAST:event_usernameKeyPressed
 
     private void usernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameMouseClicked
         username.setText("");
     }//GEN-LAST:event_usernameMouseClicked
 
+    private void userDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userDropActionPerformed
+        home.getUsername().setText("Hello, "+userDrop.getSelectedItem());
+    }//GEN-LAST:event_userDropActionPerformed
+
+    private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBtnActionPerformed
+        String text = "";
+        try{
+        
+            FileOutputStream out = new FileOutputStream(userFile);
+
+            for (int i=0; i<userDrop.getItemCount(); i++){
+                text += (userDrop.getItemAt(i)+",");
+            }
+            
+            text += username.getText() ;
+            byte buffer [] = text.getBytes();
+            out.write(buffer) ;
+            out.close() ;
+        }
+        catch (Exception e)
+        {
+            
+        }
+        DefaultComboBoxModel model = new DefaultComboBoxModel(userList());
+        userDrop.setModel( model );
+        username.setText("");
+    }//GEN-LAST:event_addUserBtnActionPerformed
+
+    private String[] userList(){
+        try{
+        FileInputStream in = new FileInputStream(userFile);
+        String storedData = "";
+        
+        byte buffer [] = new byte [100] ;
+
+          int numBytesRead = in.read(buffer) ;
+
+          while(numBytesRead > 0) {
+              storedData += (new String(buffer, 0, numBytesRead)) ;
+              numBytesRead = in.read(buffer) ;
+          }
+          
+          in.close();
+          return storedData.split("\\,");
+        }
+        catch (Exception e){
+            return (new String[] {});
+        }
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -270,10 +358,13 @@ public class UserGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addUserBtn;
     private javax.swing.JLabel backBtn;
     private javax.swing.JComboBox<String> coloursDrop;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> userDrop;
     public javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

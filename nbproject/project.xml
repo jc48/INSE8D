@@ -7,9 +7,7 @@
             <source-roots>
                 <root id="src.dir"/>
             </source-roots>
-            <test-roots>
-                <root id="test.INSE8D.dir"/>
-            </test-roots>
+            <test-roots/>
         </data>
     </configuration>
 </project>

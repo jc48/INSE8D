@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package inventory;
 
 import java.awt.Color;
@@ -12,7 +8,7 @@ import java.io.* ;
 
 /**
  *
- * @author up808703
+ * @author INSE8D
  */
 public class UserGUI extends javax.swing.JFrame {
      private final HomeGui home;
@@ -60,7 +56,7 @@ public class UserGUI extends javax.swing.JFrame {
         username = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         userDrop = new javax.swing.JComboBox<>();
-        addUserBtn = new javax.swing.JButton();
+        backBtn1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,11 +75,11 @@ public class UserGUI extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backBtnMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                backBtnMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 backBtnMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backBtnMouseEntered(evt);
             }
         });
 
@@ -106,10 +102,10 @@ public class UserGUI extends javax.swing.JFrame {
             }
         });
         username.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 usernameInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         username.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -128,10 +124,18 @@ public class UserGUI extends javax.swing.JFrame {
             }
         });
 
-        addUserBtn.setText("Add");
-        addUserBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addUserBtnActionPerformed(evt);
+        backBtn1.setBackground(new java.awt.Color(255, 255, 255));
+        backBtn1.setText("    Add");
+        backBtn1.setOpaque(true);
+        backBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backBtn1MouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                backBtn1MouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                backBtn1MouseEntered(evt);
             }
         });
 
@@ -148,7 +152,7 @@ public class UserGUI extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                                 .addComponent(coloursDrop, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -158,8 +162,8 @@ public class UserGUI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(userDrop, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addUserBtn)
-                .addGap(11, 11, 11))
+                .addComponent(backBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,12 +176,12 @@ public class UserGUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addUserBtn))
+                    .addComponent(backBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userDrop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,21 +222,29 @@ public class UserGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameInputMethodTextChanged
 
-        
+      /**
+     * Changes colour of of the view depending of users choice
+     * 
+     * @param evt clicked event 
+     */ 
     private void coloursDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloursDropActionPerformed
        String colour = coloursDrop.getSelectedItem().toString();
-       if (colour.equals("Blue")){
-           changeColour(new Color(44,62,80));
-       }
-       else if(colour.equals("Red")){
-           changeColour(Color.RED);
-       }
-       else if(colour.equals("Black")){
-           changeColour(Color.BLACK);
-       }      
-       else if(colour == "Green"){
-          changeColour(Color.GREEN);
-       }
+         switch (colour) {
+             case "Blue":
+                 changeColour(new Color(44,62,80));
+                 break;
+             case "Red":
+                 changeColour(new Color(214, 69, 65));
+                 break;
+             case "Black":
+                 changeColour(new Color(108, 122, 137));
+                 break;
+             case "Green":
+                 changeColour(new Color(39, 174, 96));
+                 break;
+             default:
+                 break;
+         }
     }//GEN-LAST:event_coloursDropActionPerformed
 
     private void changeColour(Color newCol){
@@ -254,8 +266,8 @@ public class UserGUI extends javax.swing.JFrame {
         home.getUsername().setText("Hello, "+userDrop.getSelectedItem());
     }//GEN-LAST:event_userDropActionPerformed
 
-    private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserBtnActionPerformed
-        String text = "";
+    private void backBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtn1MouseClicked
+       String text = "";
         try{
         
             FileOutputStream out = new FileOutputStream(userFile);
@@ -269,33 +281,37 @@ public class UserGUI extends javax.swing.JFrame {
             out.write(buffer) ;
             out.close() ;
         }
-        catch (Exception e)
+        catch (IOException e)
         {
             
         }
         DefaultComboBoxModel model = new DefaultComboBoxModel(userList());
         userDrop.setModel( model );
         username.setText("");
-    }//GEN-LAST:event_addUserBtnActionPerformed
+    }//GEN-LAST:event_backBtn1MouseClicked
+
+    private void backBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtn1MouseEntered
+        hoverBtn(backBtn1);
+    }//GEN-LAST:event_backBtn1MouseEntered
+
+    private void backBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtn1MouseExited
+        backBtn1.setBackground(Color.WHITE);
+    }//GEN-LAST:event_backBtn1MouseExited
 
     private String[] userList(){
         try{
-        FileInputStream in = new FileInputStream(userFile);
-        String storedData = "";
-        
-        byte buffer [] = new byte [100] ;
-
-          int numBytesRead = in.read(buffer) ;
-
-          while(numBytesRead > 0) {
-              storedData += (new String(buffer, 0, numBytesRead)) ;
-              numBytesRead = in.read(buffer) ;
-          }
-          
-          in.close();
+            String storedData;
+            try (FileInputStream in = new FileInputStream(userFile)) {
+                storedData = "";
+                byte buffer [] = new byte [100] ;
+                int numBytesRead = in.read(buffer) ;
+                while(numBytesRead > 0) {
+                    storedData += (new String(buffer, 0, numBytesRead)) ;
+                    numBytesRead = in.read(buffer) ;
+                } }
           return storedData.split("\\,");
         }
-        catch (Exception e){
+        catch (IOException e){
             return (new String[] {});
         }
         
@@ -337,8 +353,8 @@ public class UserGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addUserBtn;
     private javax.swing.JLabel backBtn;
+    private javax.swing.JLabel backBtn1;
     private javax.swing.JComboBox<String> coloursDrop;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

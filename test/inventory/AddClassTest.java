@@ -84,5 +84,22 @@ public class AddClassTest {
         assertEquals(expResult, result);    
     }
 
+ 
+    /**
+     * Test of compareYear method, of class AddClass.
+     */
+    @Test
+    public void testCompareYear() {
+        System.out.println("compareYear");
+        String date1 = "02/02/2020";
+        String date2 = "02/02/2040";
+        AddClass instance = new AddClass(home);
+        boolean expResult = true;
+        boolean result = instance.compareYear(date1, date2);
+        assertEquals(expResult, result);
+        
+    }
+
+   
     
 }

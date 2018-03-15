@@ -39,14 +39,42 @@ public class AddClass extends javax.swing.JFrame {
      */
     public AddClass(HomeGui home) {
         initComponents();
-        loadFile();
+        try{
+            loadFile();
+        } 
+        catch (Exception e)
+        {
+            
+        }
         this.home = home;
 
     }
     
     
-    public void loadFile(){
+    public void loadFile() throws Exception{
+        FileInputStream in = new FileInputStream(itemS);
+        String storedData = "";
         
+        byte buffer [] = new byte [100] ;
+
+          int numBytesRead = in.read(buffer) ;
+
+          while(numBytesRead > 0) {
+              storedData += (new String(buffer, 0, numBytesRead)) ;
+              numBytesRead = in.read(buffer) ;
+          }
+          
+          in.close();
+          sortLoad(storedData);
+    }
+    
+    public void sortLoad(String data){
+        DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
+        String[] dataList = data.split("\\\\");
+        for (int i = 0; i<dataList.length; i++){
+            String[] dataItem = dataList[i].split("\\,");
+            table.addRow(new Object[]{dataItem[0], dataItem[1], dataItem[2], dataItem[3]});
+        }
     }
     
     public void saveFile() throws Exception{
@@ -55,7 +83,7 @@ public class AddClass extends javax.swing.JFrame {
         
         FileOutputStream out = new FileOutputStream(itemS);
         for (int h = 0; h < tHeight; h++){
-            String text = readRow(h);
+            String text = readTableRow(h);
             System.out.println(text);
             byte buffer [] = text.getBytes();
             out.write(buffer);
@@ -65,7 +93,7 @@ public class AddClass extends javax.swing.JFrame {
         out.close();
     }
     
-    public String readRow(int rHeight){
+    public String readTableRow(int rHeight){
         String itemString = String.valueOf(itemTable.getValueAt(rHeight,0));
         String quantityString = String.valueOf(itemTable.getValueAt(rHeight,1));
         String dateAddedString = String.valueOf(itemTable.getValueAt(rHeight,2));
@@ -357,6 +385,8 @@ public class AddClass extends javax.swing.JFrame {
         String dateAdded = dtf.format(localDate);
         table.addRow(new Object[]{itemName, itemQuantity, dateAdded, "Date"/*expiryDate*/});
     }
+    
+    
     
     private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
         hoverBtn(backBtn);

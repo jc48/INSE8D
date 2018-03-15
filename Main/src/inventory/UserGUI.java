@@ -87,7 +87,7 @@ public class UserGUI extends javax.swing.JFrame {
             }
         });
 
-        coloursDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Black", "White", "Green", "Red" }));
+        coloursDrop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blue", "Black", "Green", "Red" }));
         coloursDrop.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 coloursDropMouseClicked(evt);
@@ -222,47 +222,26 @@ public class UserGUI extends javax.swing.JFrame {
     private void coloursDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloursDropActionPerformed
        String colour = coloursDrop.getSelectedItem().toString();
        if (colour.equals("Blue")){
-          //home.getPanel().setBackground(Color.BLUE);
-          home.getPanel().setBackground(new Color(44,62,80));
-          //home.shop.getPanel().setBackground(Color.BLUE);
-          home.shop.getPanel().setBackground(new Color(44,62,80));
-          //home.add.getPanel().setBackground(Color.BLUE);
-          home.add.getPanel().setBackground(new Color(44,62,80));
-          //jPanel1.setBackground(Color.BLUE);
-          jPanel1.setBackground(new Color(44,62,80));
-          //home.add.jPanel2.setBackground(Color.blue);
-          home.add.jPanel2.setBackground(new Color(44,62,80));
+           changeColour(new Color(44,62,80));
        }
        else if(colour.equals("Red")){
-           home.getPanel().setBackground(Color.RED);
-           home.shop.getPanel().setBackground(Color.RED);
-           home.add.getPanel().setBackground(Color.RED);
-           jPanel1.setBackground(Color.RED);
-           home.add.jPanel2.setBackground(Color.red);
+           changeColour(Color.RED);
        }
        else if(colour.equals("Black")){
-           home.getPanel().setBackground(Color.BLACK);
-           home.shop.getPanel().setBackground(Color.BLACK);
-           home.add.getPanel().setBackground(Color.BLACK);
-           jPanel1.setBackground(Color.BLACK);
-           home.add.jPanel2.setBackground(Color.black);
+           changeColour(Color.BLACK);
        }      
-       else if(colour.equals("White")){
-           home.getPanel().setBackground(Color.WHITE);
-           home.shop.getPanel().setBackground(Color.WHITE);
-           home.add.getPanel().setBackground(Color.WHITE);
-           jPanel1.setBackground(Color.WHITE);
-           home.add.jPanel2.setBackground(Color.white);
-       }
        else if(colour == "Green"){
-           home.getPanel().setBackground(Color.GREEN);
-           home.shop.getPanel().setBackground(Color.GREEN);
-           home.add.getPanel().setBackground(Color.GREEN);
-           jPanel1.setBackground(Color.GREEN);
-           home.add.jPanel2.setBackground(Color.green);
+          changeColour(Color.GREEN);
        }
     }//GEN-LAST:event_coloursDropActionPerformed
 
+    private void changeColour(Color newCol){
+        home.getPanel().setBackground(newCol);
+           home.shop.getPanel().setBackground(newCol);
+           home.add.getPanel().setBackground(newCol);
+           jPanel1.setBackground(newCol);
+           home.add.jPanel2.setBackground(newCol);
+    }
     private void usernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_usernameKeyPressed
        //home.getUsername().setText("Hello, "+username.getText());
     }//GEN-LAST:event_usernameKeyPressed

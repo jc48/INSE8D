@@ -132,12 +132,11 @@
         <Component class="javax.swing.JComboBox" name="coloursDrop">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="4">
                 <StringItem index="0" value="Blue"/>
                 <StringItem index="1" value="Black"/>
-                <StringItem index="2" value="White"/>
-                <StringItem index="3" value="Green"/>
-                <StringItem index="4" value="Red"/>
+                <StringItem index="2" value="Green"/>
+                <StringItem index="3" value="Red"/>
               </StringArray>
             </Property>
           </Properties>

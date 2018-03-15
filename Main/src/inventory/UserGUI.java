@@ -186,11 +186,16 @@ public class UserGUI extends javax.swing.JFrame {
     private void coloursDropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_coloursDropActionPerformed
        String colour = coloursDrop.getSelectedItem().toString();
        if (colour.equals("Blue")){
-          home.getPanel().setBackground(Color.BLUE);
-          home.shop.getPanel().setBackground(Color.BLUE);
-          home.add.getPanel().setBackground(Color.BLUE);
-          jPanel1.setBackground(Color.BLUE);
-          home.add.jPanel2.setBackground(Color.blue);
+          //home.getPanel().setBackground(Color.BLUE);
+          home.getPanel().setBackground(new Color(44,62,80));
+          //home.shop.getPanel().setBackground(Color.BLUE);
+          home.shop.getPanel().setBackground(new Color(44,62,80));
+          //home.add.getPanel().setBackground(Color.BLUE);
+          home.add.getPanel().setBackground(new Color(44,62,80));
+          //jPanel1.setBackground(Color.BLUE);
+          jPanel1.setBackground(new Color(44,62,80));
+          //home.add.jPanel2.setBackground(Color.blue);
+          home.add.jPanel2.setBackground(new Color(44,62,80));
        }
        else if(colour.equals("Red")){
            home.getPanel().setBackground(Color.RED);

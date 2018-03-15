@@ -50,7 +50,10 @@ public class AddClass extends javax.swing.JFrame {
 
     }
     
-    
+    /**
+     * Reads an entire local text document.
+     * @throws Exception 
+     */
     public void loadFile() throws Exception{
         FileInputStream in = new FileInputStream(itemS);
         String storedData = "";
@@ -68,6 +71,10 @@ public class AddClass extends javax.swing.JFrame {
           sortLoad(storedData);
     }
     
+    /**
+     * Splits up the inputed string and places it properly into the table.
+     * @param data The raw string of data that needs to be inputed into the table
+     */
     public void sortLoad(String data){
         DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
         String[] dataList = data.split("\\\\");
@@ -77,6 +84,10 @@ public class AddClass extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Reads all the data in the table and writes it to a local text document.
+     * @throws Exception 
+     */
     public void saveFile() throws Exception{
         
         int tHeight = itemTable.getRowCount();
@@ -93,6 +104,12 @@ public class AddClass extends javax.swing.JFrame {
         out.close();
     }
     
+    /**
+     * Prepares the data within the table to be properly saved such that it can
+     * still be loaded.
+     * @param rHeight The height of the row (0 being the top row)
+     * @return Returns the selected row as a String Formated for Saving.
+     */
     public String readTableRow(int rHeight){
         String itemString = String.valueOf(itemTable.getValueAt(rHeight,0));
         String quantityString = String.valueOf(itemTable.getValueAt(rHeight,1));
@@ -437,7 +454,6 @@ public class AddClass extends javax.swing.JFrame {
         try{
             saveFile();
         } catch (Exception e){
-            System.out.println("Well Shit");
             e.printStackTrace();
         }
         

@@ -13,6 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  *
  * @author up800143
@@ -20,8 +24,10 @@ import javax.swing.table.TableRowSorter;
 public class AddClass extends javax.swing.JFrame {
     private final HomeGui home;
     DefaultTableModel model;
-    private Inventory inventory;
-    
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    LocalDate localDate = LocalDate.now();
+
+
     /**
      * Creates new form NewJFrame
      * @param home 
@@ -29,11 +35,11 @@ public class AddClass extends javax.swing.JFrame {
     public AddClass(HomeGui home) {
         initComponents();
         this.home = home;
-        this.inventory = inventory;
-      
+
     }
-    
-  
+
+
+
     
     /**
      * Return the panel
@@ -50,9 +56,6 @@ public class AddClass extends javax.swing.JFrame {
     public String getItemName(){
         return itemName.getText();
     }
-    
-    
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -143,6 +146,8 @@ public class AddClass extends javax.swing.JFrame {
             }
         });
 
+        jDateChooser2.setDateFormatString("d/mm/yyyy");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -170,7 +175,7 @@ public class AddClass extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76))
@@ -306,12 +311,11 @@ public class AddClass extends javax.swing.JFrame {
         clearUi();
     }//GEN-LAST:event_addBtnMouseClicked
     
-    private void AddToTable(String itemName, int itemQuantity){   
+    private void AddToTable(String itemName, int itemQuantity){
         DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
         String expiryDate = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
-        String dateAdded = "Gotta fix";
-        table.addRow(new Object[]{itemName, itemQuantity, dateAdded, expiryDate});   
-
+        String dateAdded = dtf.format(localDate);
+        table.addRow(new Object[]{itemName, itemQuantity, dateAdded, expiryDate});
     }
     
     private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
@@ -366,6 +370,7 @@ public class AddClass extends javax.swing.JFrame {
     private void hoverBtn(JLabel label){
         Color myCustomColor = new Color(231, 76, 60);
         label.setBackground(myCustomColor);
+
     }
     
     
@@ -409,7 +414,7 @@ public class AddClass extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            //new AddClass().setVisible(true);
+
         });
     }
 

@@ -1,26 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package inventory;
 
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.io.*;
+import javax.swing.JTextField;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
- * @author up800143
+ * @author INSE8D
  */
 public class AddClass extends javax.swing.JFrame {
     private final HomeGui home;
@@ -55,19 +53,16 @@ public class AddClass extends javax.swing.JFrame {
      * @throws Exception 
      */
     public void loadFile() throws Exception{
-        FileInputStream in = new FileInputStream(itemS);
-        String storedData = "";
-        
-        byte buffer [] = new byte [100] ;
-
-          int numBytesRead = in.read(buffer) ;
-
-          while(numBytesRead > 0) {
-              storedData += (new String(buffer, 0, numBytesRead)) ;
-              numBytesRead = in.read(buffer) ;
-          }
-          
-          in.close();
+        String storedData;
+        try (FileInputStream in = new FileInputStream(itemS)) {
+            storedData = "";
+            byte buffer [] = new byte [100] ;
+            int numBytesRead = in.read(buffer) ;
+            while(numBytesRead > 0) {
+                storedData += (new String(buffer, 0, numBytesRead)) ;
+                numBytesRead = in.read(buffer) ;
+            }
+        }
           sortLoad(storedData);
     }
     
@@ -78,10 +73,33 @@ public class AddClass extends javax.swing.JFrame {
     public void sortLoad(String data){
         DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
         String[] dataList = data.split("\\\\");
-        for (int i = 0; i<dataList.length; i++){
-            String[] dataItem = dataList[i].split("\\,");
+        for (String dataList1 : dataList) {
+            String[] dataItem = dataList1.split("\\,");
             table.addRow(new Object[]{dataItem[0], dataItem[1], dataItem[2], dataItem[3]});
         }
+    }
+    
+    /**
+     *Returns true if expiry date of an item being added is after the current date
+     * 
+     * @param date1  current date
+     * @param date2  expiry date of item added
+     * @return boolean
+     */
+    public boolean compareYear(String date1, String date2){
+        SimpleDateFormat df;      
+        df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date d1 = df.parse(date1);
+            Date d2 = df.parse(date2);
+            
+            if(d1.compareTo(d2)<0){
+                return true;
+            }
+               
+        } catch (ParseException e) {
+        }   
+        return false;
     }
     
     /**
@@ -92,16 +110,15 @@ public class AddClass extends javax.swing.JFrame {
         
         int tHeight = itemTable.getRowCount();
         
-        FileOutputStream out = new FileOutputStream(itemS);
-        for (int h = 0; h < tHeight; h++){
-            String text = readTableRow(h);
-            System.out.println(text);
-            byte buffer [] = text.getBytes();
-            out.write(buffer);
+        try (FileOutputStream out = new FileOutputStream(itemS)) {
+            for (int h = 0; h < tHeight; h++){
+                String text = readTableRow(h);
+                System.out.println(text);
+                byte buffer [] = text.getBytes();
+                out.write(buffer);
+            }
+            //Get Item from Row
         }
-        //Get Item from Row
-        
-        out.close();
     }
     
     /**
@@ -122,17 +139,27 @@ public class AddClass extends javax.swing.JFrame {
 
     
     /**
-     * Return the panel
+     * Returns the panel
      * @return panel of the AddClass JFrame
      */
     public JPanel getPanel(){
         return bodyPanel;
     }
     
+     /**
+     * Returns the item Quantity
+     * 
+     * @return Quantity of added item
+     */
     public int getitemQuantity(){
         return Integer.parseInt(itemQuantityTxt.getText());
     }
     
+    /**
+     * Returns the item name
+     * 
+     * @return name of added item
+     */
     public String getItemName(){
         return itemName.getText();
     }
@@ -157,8 +184,9 @@ public class AddClass extends javax.swing.JFrame {
         itemQuantityTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         addBtn = new javax.swing.JLabel();
-        deleteButton = new javax.swing.JButton();
-        saveButton = new javax.swing.JButton();
+        delBtn = new javax.swing.JLabel();
+        saveBtn = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         searchBox = new javax.swing.JTextField();
         backBtn = new javax.swing.JLabel();
 
@@ -219,19 +247,37 @@ public class AddClass extends javax.swing.JFrame {
             }
         });
 
-        deleteButton.setText("Delete");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
+        delBtn.setBackground(new java.awt.Color(255, 255, 255));
+        delBtn.setText("  delete");
+        delBtn.setOpaque(true);
+        delBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                delBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                delBtnMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                delBtnMouseEntered(evt);
             }
         });
 
-        saveButton.setText("Save");
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
+        saveBtn.setBackground(new java.awt.Color(255, 255, 255));
+        saveBtn.setText("    save");
+        saveBtn.setOpaque(true);
+        saveBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveBtnMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                saveBtnMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                saveBtnMouseEntered(evt);
             }
         });
+
+        jDateChooser1.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -248,44 +294,49 @@ public class AddClass extends javax.swing.JFrame {
                                 .addGap(14, 14, 14))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addGap(5, 5, 5)
-                                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(itemQuantityTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                                .addComponent(itemName))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteButton))))
-                    .addComponent(jLabel3)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(itemQuantityTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                            .addComponent(itemName)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 624, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(itemQuantityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(jLabel3)
-                .addGap(83, 83, 83)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(saveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(itemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(itemQuantityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(73, 73, 73)
+                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(saveBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
         );
 
         searchBox.setText("Search...");
@@ -385,22 +436,41 @@ public class AddClass extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnMouseClicked
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
+        String date1 = dtf.format(localDate);
+        String date2 = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
         try{
-        AddToTable(itemName.getText(), Integer.parseInt(itemQuantityTxt.getText()));
-        }
+            if(compareYear(date1, date2) == true){
+            AddToTable(itemName.getText(), Integer.parseInt(itemQuantityTxt.getText()));
+             }
+            else{
+                JOptionPane.showMessageDialog(null,
+                "Item expiry date has passed.",
+                "Date warning",
+                JOptionPane.WARNING_MESSAGE);
+               
+                }
+            }
+            
         catch(NumberFormatException e){
-            itemName.setBackground(Color.red);
-            itemQuantityTxt.setBackground(Color.red);
-            //jDateChooser2.setBackground(Color.red);
+                itemName.setBackground(Color.red);
+                itemQuantityTxt.setBackground(Color.red);
+                jDateChooser1.setBackground(Color.red);
         }
         clearUi();
     }//GEN-LAST:event_addBtnMouseClicked
     
-    private void AddToTable(String itemName, int itemQuantity){
+    /**
+     *enables adding item to the item table
+     * 
+     * @param itemName name of item being added
+     * @param itemQuantity quantity of item being added
+     */
+    public void AddToTable(String itemName, int itemQuantity){
         DefaultTableModel table = (DefaultTableModel)itemTable.getModel();
-        //String expiryDate = ((JTextField)jDateChooser2.getDateEditor().getUiComponent()).getText();
+        String expiryDate;
+        expiryDate = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
         String dateAdded = dtf.format(localDate);
-        table.addRow(new Object[]{itemName, itemQuantity, dateAdded, "Date"/*expiryDate*/});
+        table.addRow(new Object[]{itemName, itemQuantity, dateAdded, expiryDate});
     }
     
     
@@ -428,9 +498,8 @@ public class AddClass extends javax.swing.JFrame {
     private void itemQuantityTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemQuantityTxtMouseClicked
         itemQuantityTxt.setBackground(Color.white);
     }//GEN-LAST:event_itemQuantityTxtMouseClicked
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
+    //deletes a column of item from the table
+    private void delBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtnMouseClicked
         int selectedRow = itemTable.getSelectedRow();
         
         if (selectedRow == -1) {
@@ -448,16 +517,31 @@ public class AddClass extends javax.swing.JFrame {
                 }
             }
         }           
-    }//GEN-LAST:event_deleteButtonActionPerformed
+    }//GEN-LAST:event_delBtnMouseClicked
 
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        try{
+    private void delBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtnMouseEntered
+        hoverBtn(delBtn);
+    }//GEN-LAST:event_delBtnMouseEntered
+
+    private void delBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_delBtnMouseExited
+        delBtn.setBackground(Color.white);
+    }//GEN-LAST:event_delBtnMouseExited
+
+    private void saveBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseClicked
+         try{
             saveFile();
         } catch (Exception e){
-            e.printStackTrace();
         }
         
-    }//GEN-LAST:event_saveButtonActionPerformed
+    }//GEN-LAST:event_saveBtnMouseClicked
+
+    private void saveBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseEntered
+        hoverBtn(saveBtn);
+    }//GEN-LAST:event_saveBtnMouseEntered
+
+    private void saveBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveBtnMouseExited
+        saveBtn.setBackground(Color.white);
+    }//GEN-LAST:event_saveBtnMouseExited
     /**
     * Changes the color of a label 
     * 
@@ -518,17 +602,18 @@ public class AddClass extends javax.swing.JFrame {
     private javax.swing.JLabel addBtn;
     private javax.swing.JLabel backBtn;
     private javax.swing.JPanel bodyPanel;
-    private javax.swing.JButton deleteButton;
+    private javax.swing.JLabel delBtn;
     public javax.swing.JTextField itemName;
     public javax.swing.JTextField itemQuantityTxt;
     private javax.swing.JTable itemTable;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     public javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton saveButton;
+    private javax.swing.JLabel saveBtn;
     public javax.swing.JTextField searchBox;
     // End of variables declaration//GEN-END:variables
 

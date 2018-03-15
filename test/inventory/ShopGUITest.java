@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package inventory;
 
 
@@ -15,7 +11,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author SalimMatazu
+ * @author INSE8D
  */
 public class ShopGUITest {
     HomeGui home = new HomeGui();
@@ -52,6 +48,20 @@ public class ShopGUITest {
         String result = instance.getAddItem();
         assertEquals(expResult, result);
         
+    }
+
+
+    /**
+     * Test of addItem method, of class ShopGUI.
+     */
+    @Test
+    public void testAddItem() {
+        System.out.println("getAddItem");
+        ShopGUI instance = new ShopGUI(home);
+        instance.addItem.setText("beef");
+        String expResult = "beef";
+        String result = instance.getAddItem();
+        assertEquals(expResult, result);
     }
 
    

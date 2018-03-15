@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package inventory;
 
 import java.awt.Color;
@@ -13,7 +9,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author up800143
+ * @author INSE8D
  */
 public class ShopGUI extends javax.swing.JFrame {
      private final HomeGui home;
@@ -363,7 +359,7 @@ public class ShopGUI extends javax.swing.JFrame {
      *
      * @param itemName the string of item to add to shopping list
      */
-    private void addItem(String itemName){
+    public void addItem(String itemName){
       DefaultListModel model = new DefaultListModel();
       try{
         list.add(itemName);
@@ -480,7 +476,7 @@ public class ShopGUI extends javax.swing.JFrame {
        addItem.setBackground(Color.white);
     }//GEN-LAST:event_addItemMouseClicked
    
-    private void hoverBtn(JLabel label){
+    public void hoverBtn(JLabel label){
         Color myCustomColor = new Color(231, 76, 60);
         label.setBackground(myCustomColor);
     }

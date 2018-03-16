@@ -111,16 +111,5 @@ public class Item {
         return expiryDate;
     }
 
-    /**
-     *
-     */
-    public void getItemInfo(){
-
-    System.out.println("Item: " + item);
-    System.out.println("Quantity: " + quantity);
-    System.out.println("Date Added: " + addedDate);
-    System.out.println("Expiry Date: " + expiryDate);
-    }
-    
 
 }

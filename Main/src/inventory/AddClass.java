@@ -15,6 +15,9 @@ import javax.swing.JTextField;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -75,9 +78,10 @@ public class AddClass extends javax.swing.JFrame {
         String[] dataList = data.split("\\\\");
         for (String dataList1 : dataList) {
             String[] dataItem = dataList1.split("\\,");
-            table.addRow(new Object[]{dataItem[0], dataItem[1], dataItem[2], dataItem[3]});
+            table.addRow(new Object[]{dataItem[0], dataItem[1], dataItem[2], dataItem[3], dataItem[4]});
         }
     }
+    
     
     /**
      *Returns true if expiry date of an item being added is after the current date
@@ -132,10 +136,10 @@ public class AddClass extends javax.swing.JFrame {
         String quantityString = String.valueOf(itemTable.getValueAt(rHeight,1));
         String dateAddedString = String.valueOf(itemTable.getValueAt(rHeight,2));
         String expiryString = String.valueOf(itemTable.getValueAt(rHeight,3));
-        return (itemString+","+quantityString+","+dateAddedString+","+expiryString+"\\");
+        String daysLeft = String.valueOf(itemTable.getValueAt(rHeight,4));
+        return (itemString+","+quantityString+","+dateAddedString+","+expiryString+", "+daysLeft+"\\");
+        
     }
-
-
 
     
     /**
@@ -206,7 +210,7 @@ public class AddClass extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Item", "Quantity", "Date Added", "Expiry Date"
+                "Item", "Quantity", "Date Added", "Expiry Date", "Days Left"
             }
         ));
         jScrollPane1.setViewportView(itemTable);
@@ -239,11 +243,11 @@ public class AddClass extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addBtnMouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                addBtnMouseEntered(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 addBtnMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addBtnMouseEntered(evt);
             }
         });
 
@@ -435,6 +439,28 @@ public class AddClass extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_backBtnMouseClicked
 
+    /**
+     * Returns days left before an item expires
+     * 
+     * @param date1 item expiry date
+     * @param date2 current date
+     * @return days left before item expires
+     * @throws java.text.ParseException 
+     */
+    public int daysBetween(String date1, String date2) throws ParseException{
+     SimpleDateFormat myFormat = new SimpleDateFormat("dd/MM/yyyy");
+     String inputString1 = date1;
+     String inputString2 = date2;
+
+        Date d1 = myFormat.parse(inputString1);
+        Date d2 = myFormat.parse(inputString2);
+        long diff = d1.getTime() - d2.getTime();
+        
+        return (int) TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+
+    }
+    
+    //on click events that adds items to the table
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
         String date1 = dtf.format(localDate);
         String date2 = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
@@ -457,6 +483,7 @@ public class AddClass extends javax.swing.JFrame {
                 jDateChooser1.setBackground(Color.red);
         }
         clearUi();
+        
     }//GEN-LAST:event_addBtnMouseClicked
     
     /**
@@ -470,10 +497,15 @@ public class AddClass extends javax.swing.JFrame {
         String expiryDate;
         expiryDate = ((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText();
         String dateAdded = dtf.format(localDate);
-        table.addRow(new Object[]{itemName, itemQuantity, dateAdded, expiryDate});
+        try {
+            int daysLeft = daysBetween(expiryDate,dateAdded);
+            table.addRow(new Object[]{itemName, itemQuantity, dateAdded, expiryDate, daysLeft});
+        } catch (ParseException ex) {
+            Logger.getLogger(AddClass.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
-    
-    
+      
     
     private void backBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backBtnMouseEntered
         hoverBtn(backBtn);

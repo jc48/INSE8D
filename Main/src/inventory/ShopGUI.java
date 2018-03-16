@@ -308,6 +308,10 @@ public class ShopGUI extends javax.swing.JFrame {
         return viewPanel;
     }
     
+    /**
+     *
+     * @return
+     */
     public String getAddItem(){
         return addItem.getText();
     }
@@ -476,6 +480,10 @@ public class ShopGUI extends javax.swing.JFrame {
        addItem.setBackground(Color.white);
     }//GEN-LAST:event_addItemMouseClicked
    
+    /**
+     *
+     * @param label
+     */
     public void hoverBtn(JLabel label){
         Color myCustomColor = new Color(231, 76, 60);
         label.setBackground(myCustomColor);

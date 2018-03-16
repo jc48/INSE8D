@@ -100,6 +100,21 @@ public class AddClassTest {
         
     }
 
-   
+    
+    /**
+     * Test of daysBetween method, of class AddClass.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testDaysBetween() throws Exception {
+        String date1 = "05/02/2020";
+        String date2 = "03/02/2020";
+        AddClass instance = new AddClass(home);
+        int expResult = 2;
+        int result = instance.daysBetween(date1, date2);
+        assertEquals(expResult, result);
+        
+    }
+
     
 }

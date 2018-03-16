@@ -12,33 +12,23 @@ package inventory;
 public class Item {
 
     /**
-     *
+     * Instance variables for Item class.
      */
     public String item;
-
+    public int quantity, addedDate, expiryDate;
+    
     /**
-     *
-     */
-    public int quantity,
-
-    /**
-     *
-     */
-    addedDate, expiryDate;
-    //ArrayList<String> inventory1 = new ArrayList<String>();
-
-    /**
-     *
+     * Constructor for Inventory class.
      */
     public Item (){
     }
     
     /**
-     *
-     * @param itemName
-     * @param itemQuantity
-     * @param itemAddedDate
-     * @param itemExpiryDate
+     * Constructor for Inventory class.
+     * @param itemName identifies the item name.
+     * @param itemQuantity identifies the item Quantity.
+     * @param itemAddedDate identifies the date of the added item.
+     * @param itemExpiryDate identifies the expiry date of the added item .
      */
     public Item(String itemName, int itemQuantity, int itemAddedDate, int itemExpiryDate){
         item = itemName;
@@ -47,65 +37,65 @@ public class Item {
         addedDate = itemAddedDate;
     }
     
-    /**
-     *
-     * @param setItemName
+     /**
+     * Sets the item name.
+     * @param setItemName identifies the item name.
      */
     public void setItemName(String setItemName){
         item = setItemName;
     }
 
-    /**
-     *
-     * @return
+     /**
+     * Gets the Item Name.
+     * @return item 
      */
     public String getItemName(){
         return item;
     }
     
     /**
-     *
-     * @param newQuantity
+     * Sets a new quantity
+     * @param newQuantity  identifies the item quantity.
      */
     public void setQuantity(int newQuantity){
         quantity = newQuantity;
     }
 
     /**
-     *
-     * @return
+     * Gets the quantity of item.
+     * @return quantity
      */
     public int getQuantity(){
         return quantity;
     }
     
     /**
-     *
-     * @param newAddedDate
+     * Sets a the added date
+     * @param newAddedDate identifies the date item was added.
      */
     public void setAddedDate(int newAddedDate){
        expiryDate = newAddedDate;
     }
 
     /**
-     *
-     * @return
+     * Gets the added date of item.
+     * @return addedDate 
      */
     public int getAddedDate(){
         return addedDate;
     }
 
     /**
-     *
-     * @param newExpiryDate
+     * Sets the ExpiryDate
+     * @param newExpiryDate identifies the expiry date for item.
      */
     public void setExpiry(int newExpiryDate){
        expiryDate = newExpiryDate;
     }
-
+    
     /**
-     *
-     * @return
+     * Gets the expiry date of item.
+     * @return expiryDate
      */
     public int getExpiryDate(){
         return expiryDate;

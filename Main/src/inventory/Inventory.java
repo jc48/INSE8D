@@ -9,36 +9,24 @@ import java.util.ArrayList;
 
 /**
  *
- * @author ShaunahRose
+ * @author INSE8D
  */
 public class Inventory extends Item{
    
     /**
-     *
+     * Instance variables for Inventory class.
      */
     public ArrayList <Item> inventory1 = new ArrayList<>();
-    //public int id;
-
-    /**
-     *
+   
+     /**
+     * Constructor for Inventory class.
      */
     public Inventory(){
-       //id = id1;
-       // this.inventory1;
     }
     
-//  
-//    public ArrayList createInven()
-//    {
-//        ArrayList<Item> list = new ArrayList<>(); 
-//        inventory1 = list;
-//        return inventory1;
-//    }
-//    
-
     /**
-     *
-     * @return
+     * Gets inventory item.
+     * @return inventory1
      */
     
     public ArrayList<Item> getInveItem(){
@@ -46,35 +34,33 @@ public class Inventory extends Item{
     }
     
     /**
-     *
-     * @return
+     * Gets the inventory size.
+     * @return inventory.size()
      */
     public int getInvenItemListSize(){
         return inventory1.size();
     }
-
+   
     /**
-     *
-     * @param i
+     * Adds item to inventory
+     * @param i identifies the item.
      */
     public void addItem(Item i){
         inventory1.add(i);
     }
     
     /**
-     *
-     * @param i
+     * Removes item from inventory
+     * @param i identifies the item.
      */
     public void removeItem(Item i){
         inventory1.remove(i);
     
     }
+   
     /**
-    public void getItemInfo(ArrayList inv){
-        for(int i = 1; i < inv.size(); ++i){
-            System.out.print("Item: " + i.getItemName() + "\n" + "Quantity: " + i.getQuantity() + "\n" + "Date Added: " + i.getAddedDate() + "\n" + "Expiry Date: " + i.getExpiryDate() + "\n");
-        }
-        **/
+    * Shows information of each item in inventory.
+    */
     public void getInventoryItemInfo(){
         for(Item x : inventory1){
             System.out.print("Item: " + x.getItemName() + "\n" + "Quantity: " + x.getQuantity() + "\n" + "Date Added: " + x.getAddedDate() + "\n" + "Expiry Date: " + x.getExpiryDate() + "\n");

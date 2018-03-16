@@ -1,6 +1,6 @@
 
 # INSE8D
-    A Kitchen Inventory System
+    A Kitchen Inventory Application
     Developed for INSE Unit at the University of Portsmouth
     using Java
 
